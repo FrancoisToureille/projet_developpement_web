@@ -17,11 +17,15 @@ function start_index() {
         </header>
         <div class="home">
             <div class="navBarr">
+                <div class="search">
+                </div>
             </div>
         </div>
 
         <div class="homePhone">
             <div class="navBarr">
+                <div class="search">
+                </div>
             </div>
         </div>
         

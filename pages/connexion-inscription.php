@@ -16,11 +16,17 @@ function startSignInSignOut() {
                
         </header>
         <div class="home">
-            
+            <div class="inscription">
+            </div>
+            <div class="connexion">
+            </div>
         </div>
 
         <div class="homephone">
-            
+            <div class="inscription">
+            </div>
+            <div class="connexion">
+            </div>
         </div>
         
         <footer>
