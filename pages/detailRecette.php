@@ -15,7 +15,7 @@ function start_detailRecette($recette) {
         <header>
                
         </header>
-        <div class="menu">
+        <div class="home">
             <div class="navBarr">
             </div>
             <div>
@@ -23,7 +23,7 @@ function start_detailRecette($recette) {
             </div>
         </div>
 
-        <div class="menuMobile" style="display:none">
+        <div class="homePhone" style="display:none">
             <div class="navBarr">
             </div>
             <div>

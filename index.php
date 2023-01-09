@@ -15,12 +15,12 @@ function start_index() {
         <header>
                
         </header>
-        <div class="menu">
+        <div class="home">
             <div class="navBarr">
             </div>
         </div>
 
-        <div class="menuMobile">
+        <div class="homePhone">
             <div class="navBarr">
             </div>
         </div>

@@ -1,5 +1,5 @@
 <?php 
-function start_listeRecettes() { 
+function start_listRecipes() { 
     ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,7 +15,7 @@ function start_listeRecettes() {
         <header>
                
         </header>
-        <div class="menu">
+        <div class="home">
             <div class="navBarr">
             </div>
             <div>
@@ -23,7 +23,7 @@ function start_listeRecettes() {
             </div>
         </div>
 
-        <div class="menuMobile" style="display:none">
+        <div class="homePhone" style="display:none">
             <div class="navBarr">
             </div>
             <div>
@@ -39,5 +39,5 @@ function start_listeRecettes() {
 <?php } ?>
 
 <?php 
-start_listeRecettes();
+start_listRecipes();
 ?>
