@@ -1,10 +1,10 @@
 <?php 
-function start_detailRecette($recette) { 
+function start_listeRecettes() { 
     ?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <title>Eclair d'Eugénie - Detail de la Recette</title> 
+        <title>Eclair d'Eugénie - Nos Recettes</title> 
             <!--<link rel="icon" type="image/x-icon" href="images/Bachelor.ico" sizes="96x96" /> -->
             <!-- <script src="./javascript.js"></script> -->
             <!-- <link rel="stylesheet" href="./css/styleAccueil.css"> -->
@@ -19,7 +19,7 @@ function start_detailRecette($recette) {
             <div class="navBarr">
             </div>
             <div>
-                <h1>Recette : <?php echo $recette; ?> </h1>
+                <h1>Nos Recettes : </h1>
             </div>
         </div>
 
@@ -27,7 +27,7 @@ function start_detailRecette($recette) {
             <div class="navBarr">
             </div>
             <div>
-                <h1>Recette : <?php echo $recette; ?> </h1>
+                <h1>Nos Recettes :  </h1>
             </div>
         </div>
         
@@ -39,6 +39,5 @@ function start_detailRecette($recette) {
 <?php } ?>
 
 <?php 
-$recette = "éclair d'Eugenie";
-start_detailRecette($recette);
+start_listeRecettes();
 ?>
