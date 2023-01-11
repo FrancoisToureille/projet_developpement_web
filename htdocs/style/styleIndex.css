@@ -15,6 +15,7 @@
 body{
     font-family: 'Gilda Display';
     background-image: url("../image/bg_patisserie.jpg");
+    background-attachment: fixed;
 }
 
 header{
@@ -45,13 +46,21 @@ header{
 }
 
 #img_eclair{
+    margin-top: 60px;
     rotate: 60deg;
+    width: 250px;
 }
 
 .navBarr{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     background-color: rgba(246, 239, 222, 0.9);
+}
+
+#img_form{
+    width: 60px;
+    margin: 10px;
 }
 
 .connexion{
@@ -69,17 +78,143 @@ a{
     display: flex;
     justify-content: center;
     position: relative;
+    background-color: #bfb4ad;
+    padding-left: 20px;
     align-items: center;
     font-size: 25px;
+    margin: 10px;
+    padding-right: 20px;
 }
 
 .search{
     display: flex;
-    justify-content: space-between;
 }
 
 #search_input{
     display: flex;
     justify-content: right;
     border-style: none;
+    width: 250px;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#img_loupe{
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+}
+
+.recipesAndCategories{
+    display: flex;
+    flex-direction: row;
+}
+
+.randomRecipe{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10%;
+    background-color: rgba(246, 239, 222, 0.9);
+}
+
+.recipeTitle{
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    font-size: 30px;
+}
+
+.recipeView{
+    display: flex;
+    align-items: center;
+}
+
+#img_cannele{
+    width: 500px;
+    margin: 30px;
+}
+
+.arrow{
+    width: 70px;
+}
+
+.right_arrow{
+    rotate: -90deg;
+}
+
+.left_arrow{
+    rotate: 90deg;
+}
+
+
+
+#slider{
+    width:80%;
+    margin:0px auto;
+    margin-top: 100px;
+    max-width: 600px;
+    position:relative;
+    overflow:hidden;
+    border: 10px solid white;
+    box-shadow:2px 5px 10px rgba(0,0,0,0.4);;
+}
+
+.slide{
+    width:100%;
+    display:none;
+    animation-name:fade;
+    animation-duration:1s;
+}
+
+@keyframes fade{
+    from{opacity:0.5;}
+    to{opacity:1;}
+}
+
+#dots-con{
+    text-align:center;
+}
+
+.dot{
+    display:inline-block;
+    background:grey;
+    padding:8px;
+    border-radius:50%;
+    margin:10px 5px;
+}
+
+.active{
+    background:rgb(7, 67, 213);
+}
+
+.controls{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:1.5em;
+    padding:15px 10px;
+    border-radius:5px;
+}
+
+.controls:hover{
+    background:white;
+    transition:0.3s;
+}
+
+.controls:active{
+    color:grey;
+}
+
+#left-arrow{
+    left:10px;
+}
+
+#right-arrow{
+    right:10px;
+}
+
+.bouffe{
+    width: 500px;
 }
