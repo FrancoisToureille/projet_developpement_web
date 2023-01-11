@@ -29,8 +29,11 @@ function start_index() {
                 </div>
                 <div class="search">
                     <input id="search_input" type="text">
+                    <img id="img_loupe" alt="img_loupe" src="./image/loupe.png">
                 </div>
             </div>
+
+
         </div>
 
         <div class="homePhone">

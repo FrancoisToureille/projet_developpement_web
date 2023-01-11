@@ -45,13 +45,21 @@ header{
 }
 
 #img_eclair{
+    margin-top: 60px;
     rotate: 60deg;
+    width: 250px;
 }
 
 .navBarr{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     background-color: rgba(246, 239, 222, 0.9);
+}
+
+#img_form{
+    width: 60px;
+    margin: 10px;
 }
 
 .connexion{
@@ -69,17 +77,30 @@ a{
     display: flex;
     justify-content: center;
     position: relative;
+    background-color: #bfb4ad;
+    padding-left: 20px;
     align-items: center;
     font-size: 25px;
+    margin: 10px;
+    padding-right: 20px;
 }
 
 .search{
     display: flex;
-    justify-content: space-between;
 }
 
 #search_input{
     display: flex;
     justify-content: right;
     border-style: none;
+    width: 250px;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#img_loupe{
+    width: 60px;
+    height: 60px;
+    margin: 10px;
 }
