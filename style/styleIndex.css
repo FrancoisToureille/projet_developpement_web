@@ -1,0 +1,85 @@
+@font-face{
+    font-family: 'Gilda Display';
+    src: url('../font/Gilda_display/GildaDisplay-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cheque Bold';
+    src: url('../font/Cheque/Cheque-Black.otf') format('opentype');
+}
+
+* {
+    margin: 0px;
+}
+
+body{
+    font-family: 'Gilda Display';
+    background-image: url("../image/bg_patisserie.jpg");
+}
+
+header{
+    font-family: 'Cheque Bold';
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgba(246, 239, 222, 0.9);
+}
+
+.titre_page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 60px;
+}
+
+.titre{
+    display: flex;
+    justify-content: center;
+}
+
+.petit_titre{
+    font-family: 'Gilda Display';
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+}
+
+#img_eclair{
+    rotate: 60deg;
+}
+
+.navBarr{
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(246, 239, 222, 0.9);
+}
+
+.connexion{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.connexion_txt{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    font-size: 25px;
+}
+
+.search{
+    display: flex;
+    justify-content: space-between;
+}
+
+#search_input{
+    display: flex;
+    justify-content: right;
+    border-style: none;
+}
