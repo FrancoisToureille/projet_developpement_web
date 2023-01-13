@@ -1,7 +1,7 @@
 <?php
 class InscriptionUtilisateurBDD {
     public function sinscrire($S_nomUtilisateur, $S_motDePasse, $S_email) {
-        $O_pdo = ConnexionBDD::donnerPdo();
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
             //On vérifie l'existance du nom dans la BDD
             $O_statement = $O_pdo->query("SELECT idUser FROM user WHERE name='" . $S_nomUtilisateur . "'");
@@ -23,10 +23,14 @@ class InscriptionUtilisateurBDD {
                         //On crée un nouvel utilisateur dans la BDD
                         $O_statement = $O_pdo->prepare("INSERT INTO user(nom,email,motDePasse) VALUES('" . $S_nomUtilisateur . "','" . $S_email . "','" . $S_motDePasse . "'");
                         $O_statement->execute();
+                        return;
                     }
                     catch (PDOException $e) {
                         return $e->getMessage();
                     }
+                }
+                else {
+                    return "Email non valide";
                 }
             } catch (PDOException $e) {
                 return $e->getMessage();
