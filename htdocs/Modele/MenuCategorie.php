@@ -19,7 +19,7 @@ class menuCategorie
 
         $resultatSuperCategorie = $O_requette->fetchAll();
 
-        while ($superCategorie = $resultatSuperCategorie->fetch()){
+        foreach ($resultatSuperCategorie as $superCategorie){
             $requetteRecupererSousCategorie = "SELECT idCategorie, nomCategorie FROM categorie WHERE idPere = $superCategorie->idCategorie";
             $O_requetteSousCategorie = $connexionBD->query($requetteRecupererSousCategorie);
             $listeSousCategorie = array();
@@ -28,7 +28,7 @@ class menuCategorie
                 $listeSousCategorie[] = $categorie;
             }
 
-            $this->listeCategorie[$superCategorie] = $listeSousCategorie;
+            $this->listeCategorie[$superCategorie->nomCategorie] = $listeSousCategorie;
         }
     }
 
