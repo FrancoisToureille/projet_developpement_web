@@ -1,7 +1,7 @@
 <?php
-echo "<p>" . $A_vue['menuCategorie']  . "</p>";
-// <div class = "menuCategorie">
-//     <ul>
 
-//     </ul>
-// </div>
+echo "<div class = "menuCategorie">
+     <ul>"
+    . $A_vue['menuCategorie']  .
+         "</ul>
+    </div>";
