@@ -4,14 +4,14 @@ final class Recette
 {
     private $_S_nomRecette;
     private $_S_instructions;
-    private $_A_ingredients;
-    private $_I_difficulte;
+    /*private $_A_ingredients;
+    private $_I_difficulte;*/
 
-    public function __construct($_S_nomRecette, $_S_instructions,$_A_ingredients, $_I_difficulte) { 
+    public function __construct($_S_nomRecette, $_S_instructions,/*$_A_ingredients, $_I_difficulte*/) { 
         $this->_S_nomRecette = $_S_nomRecette;
         $this->_S_instructions = $_S_instructions;
-        $this->_A_ingredients = $_A_ingredients;
-        $this->_I_difficulte = $_I_difficulte;
+        /*$this->_A_ingredients = $_A_ingredients;
+        $this->_I_difficulte = $_I_difficulte;*/
         /* attention pas de symbole dollar sur les attributs après le this.*/
     }
 
@@ -24,7 +24,7 @@ final class Recette
     {
         return $this->_S_instructions;
     }
-    public function donneDifficulte()
+    /*public function donneDifficulte()
     {
         return $this->_I_difficulte;
     }
@@ -34,7 +34,6 @@ final class Recette
     public function donneIngredients($_I_index)
     {
         return $this->_A_ingredients[$_I_index];
-    }
-
+    }*/
 
 }
