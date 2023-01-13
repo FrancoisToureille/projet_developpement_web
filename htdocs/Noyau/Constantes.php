@@ -17,6 +17,10 @@ final class Constantes
 
     const REPERTOIRE_CONTROLEURS = '/Controleurs/';
 
+    const NOM_UTILISATEUR_BD = "295283";
+
+    const MOT_DE_PASSE_BD ="eugenax18";
+
 
     public static function repertoireRacine() {
         return realpath(__DIR__ . '/../');
@@ -42,5 +46,11 @@ final class Constantes
         return self::repertoireRacine() . self::REPERTOIRE_CONTROLEURS;
     }
 
+    public static function nomUtilisateurBD(){
+        return self::NOM_UTILISATEUR_BD;
+    }
 
+    public static function motDePAsseBD(){
+        return self::MOT_DE_PASSE_BD;
+    }
 }

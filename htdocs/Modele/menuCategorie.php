@@ -9,7 +9,12 @@ class menuCategorie
 
     }
 
-    private
+    private function chargerCategorie(){
+        $connecteur = new ConnexionBDD(Constantes::nomUtilisateurBD(), Constantes::motDePAsseBD());
+
+
+
+    }
 
     public function donneListeCategorie(){
 
