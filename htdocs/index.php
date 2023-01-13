@@ -25,6 +25,8 @@
 
     try
     {
+        /*on se connecte à la base de données*/
+        $O_Connexion = new ConnectionBDD('mysql-eclair-d-eugenie.alwaysdata.net','eclair-d-eugenie_db','295283','eugenax18');
         $O_controleur = new Controleur($S_urlADecortiquer, $A_postParams);
         $O_controleur->executer();
     }

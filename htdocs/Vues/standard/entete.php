@@ -8,4 +8,3 @@
     </div>
     <div><img id="img_eclair" alt="eclair" src="./image/eclairchoco.png"></div>
 </header>
-    
