@@ -53,6 +53,19 @@ final class Recette
         }
     }
 
+    public static function donneToutesNomRecetteNomIngredient() {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $O_statement = $O_pdo->query("SELECT nomRecette, I.libelle FROM recette R, ingredient I, recetteIngredient RI WHERE R.idRecette = RI.idRecette AND I.idIngredient = RI.idIngredient");
+            $O_statement->setFetchMode(PDO::FETCH_OBJ);
+            if ($O_statement->columnCount()) {
+                return $O_statement->fetchAll();
+            }
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
     /*public function donneDifficulte()
     {
         return $this->_I_difficulte;
