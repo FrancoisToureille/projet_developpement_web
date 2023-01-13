@@ -1,6 +1,6 @@
 <?php
 class InscriptionUtilisateurBDD {
-    public function sinscrire($S_nomUtilisateur, $S_motDePasse, $S_email) {
+    public static function sinscrire($S_nomUtilisateur, $S_motDePasse, $S_email) {
         $O_pdo = ConnexionBDD::getInstance();
         try {
             //On vérifie l'existance du nom dans la BDD

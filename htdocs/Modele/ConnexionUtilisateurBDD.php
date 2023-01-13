@@ -1,6 +1,6 @@
 <?php
 class ConnexionUtilisateurBDD {
-    public function seConnecter($S_nomUtilisateur, $S_motDePasse) {
+    public static function seConnecter($S_nomUtilisateur, $S_motDePasse) {
         $O_pdo = ConnexionBDD::getInstance();
         try {
             $O_requete = $O_pdo->query("SELECT idUser FROM user WHERE name='" . $S_nomUtilisateur . "' AND password='" . $S_motDePasse ."'");
