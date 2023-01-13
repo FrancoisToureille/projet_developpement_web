@@ -10,23 +10,21 @@ class menuCategorie
     }
 
     private function chargerCategorie(){
-        $connecteur = new ConnexionBDD(Constantes::nomUtilisateurBD(), Constantes::motDePAsseBD());
-
         $requetteRecupererSuperCategorie = "SELECT idCategorie, nomCategorie FROM categorie WHERE idPere IS NULL";
 
-        $connecteur::donnerPdo()->prepare($requetteRecupererSuperCategorie);
-        $connecteur::donnerPdo()->execute();
-        $connecteur::donnerPdo()->setFetchMode(PDO::FETCH_OBJ);
+        $O_requette = ConnexionBDD::donnerPdo()->prepare($requetteRecupererSuperCategorie);
+        $O_requette->execute();
+        $O_requette->setFetchMode(PDO::FETCH_OBJ);
 
-        $resultatSuperCategorie = $connecteur::donnerPdo()->fetchAll();
+        $resultatSuperCategorie = $O_requette->fetchAll();
 
-        while ($superCategorie = $resultatSuperCategorie->fecth()){
+        while ($superCategorie = $resultatSuperCategorie->fetch()){
             $requetteRecupererSousCategorie = "SELECT idCategorie, nomCategorie FROM categorie WHERE idPere = $superCategorie->idCategorie";
-            $connecteur::donnerPdo()->prepare($requetteRecupererSousCategorie);
-            $connecteur::donnerPdo()->execute();
+            $O_requetteSousCategorie = ConnexionBDD::donnerPdo()->prepare($requetteRecupererSousCategorie);
+            $O_requetteSousCategorie->execute();
             $listeSousCategorie = array();
 
-            while ($categorie = $connecteur::donnerPdo()->fetch()){
+            while ($categorie = $O_requetteSousCategorie->fetch()){
                 $listeSousCategorie[] = $categorie;
             }
 
