@@ -24,6 +24,21 @@ final class Recette
     {
         return $this->_S_instructions;
     }
+
+    public static function donneToutesLesRecettesBDD() {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $O_statement = $O_pdo->query("SELECT nomRecette,libelle FROM recette");
+            $O_statement->setFetchMode(PDO::FETCH_OBJ);
+            if ($O_statement->columnCount()) {
+                return $O_statement->fetchAll();
+            }
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
     /*public function donneDifficulte()
     {
         return $this->_I_difficulte;
