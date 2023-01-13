@@ -7,7 +7,7 @@ class ControleurMenuCategorie
     {
 
         $O_MenuCategorie = new MenuCategorie();
-        Vue::montrer('categorie/menuCategorie', array('categorie' => $O_MenuCategorie->donneListeCategorie()));
+        Vue::montrer('menuCategorie/menuCategorie', array('menuCategorie' => $O_MenuCategorie->donneListeCategorie()));
 
     }
 
