@@ -6,7 +6,7 @@ class ControleurMenuCategorie
     public function defautAction()
     {
 
-        $O_MenuCategorie = new MenuCategorie();
+        $O_MenuCategorie = new Categorie();
         $A_listeCategorie = $O_MenuCategorie->donneListeCategorie();
 
         $S_affichageCategorie = "";

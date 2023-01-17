@@ -1,9 +1,10 @@
 <?php
 
-class menuCategorie
+class Categorie
 {
 
     private $listeCategorie = array();
+    private $listeSousCategorie = array();
 
     public function __construct(){
         $this->chargerCategorie();
@@ -26,6 +27,7 @@ class menuCategorie
 
             while ($categorie = $O_requetteSousCategorie->fetch(PDO::FETCH_OBJ)){
                 $listeSousCategorie[] = $categorie;
+                $this->listeSousCategorie[] =$categorie;
             }
 
             $this->listeCategorie[$superCategorie->nomCategorie] = $listeSousCategorie;
