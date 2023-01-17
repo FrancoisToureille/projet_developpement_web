@@ -1,6 +1,6 @@
 <?php
 
-echo "<div class = "menuCategorie">
+echo "<div class = \"menuCategorie\">
      <ul>"
     . $A_vue['menuCategorie']  .
          "</ul>

@@ -12,14 +12,14 @@ class ControleurMenuCategorie
         $S_affichageCategorie = "";
 
         foreach ($A_listeCategorie as $superCategorie => $categorie){
-            $S_affichageCategorie .= "<li id='$superCategorie'> <p>$superCategorie</p> <ul>";
+            $S_affichageCategorie .= "<li id='$superCategorie'> $superCategorie <ul>";
             foreach ($categorie as $sousCategorie){
                 $S_affichageCategorie .= "<li id='$sousCategorie->idCategorie'> $sousCategorie->nomCategorie </li>";
             }
             $S_affichageCategorie .= "</ul> </li>";
         }
 
-        Vue::montrer('menuCategorie/menuCategorie', array('menuCategorie' => print($S_affichageCategorie)));
+        Vue::montrer('menuCategorie/menuCategorie', array('menuCategorie' => $S_affichageCategorie));
 
     }
 

@@ -24,7 +24,7 @@ class menuCategorie
             $O_requetteSousCategorie = $connexionBD->query($requetteRecupererSousCategorie);
             $listeSousCategorie = array();
 
-            while ($categorie = $O_requetteSousCategorie->fetch()){
+            while ($categorie = $O_requetteSousCategorie->fetch(PDO::FETCH_OBJ)){
                 $listeSousCategorie[] = $categorie;
             }
 
