@@ -66,6 +66,30 @@ final class Recette
             return $e->getMessage();
         }
     }
+
+    public static function donneToutesRecetteCategorie($I_idCategoriePere) {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $O_statement = $O_pdo->prepare("
+            with recursive f (idCategorie, idPere) as (
+            SELECT idCategorie, idPere
+            FROM categorie
+            where idPere = ?
+            union all
+            SELECT c.idCategorie, c.idPere
+            FROM categorie c
+            inner join f on f.idCategorie = c.idPere)
+            select * from f;");
+            $O_statement->execute();
+            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
+            if ($O_statement->columnCount()) {
+                return $O_statement->fetchAll();
+            }
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
     /*public function donneDifficulte()
     {
         return $this->_I_difficulte;
