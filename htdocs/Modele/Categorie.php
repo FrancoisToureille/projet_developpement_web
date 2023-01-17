@@ -38,4 +38,31 @@ class Categorie
         return $this->listeCategorie;
     }
 
+    public function donneListeSousCategorie(){
+        return $this->listeSousCategorie;
+    }
+
+    public function donneListeRecetteCategorie($categories){
+        $numargs = count($categories); // nombre d'arguments
+
+        $A_recetteCategorie = array();
+
+        if ($numargs < 1){
+            return $A_recetteCategorie;
+        }
+        $connexionBD = ConnexionBDD::getInstance(); //on appelle le pdo
+
+        // On ecris la requette avec les paramettres de la fonction
+        $S_recupererRecetteSQL = "SELECT DISTINCT idRecette FROM `recetteCategorie` WHERE idRecette IN (SELECT idRecette FROM `recetteCategorie` WHERE idCategorie = " . $categories[0] . ")";
+
+        for ($i = 1; $i < $numargs; $i++) {
+            $S_recupererRecetteSQL .= "AND idRecette IN (SELECT idRecette FROM `recetteCategorie` WHERE idCategorie = " . $categories[$i] . ")";
+        }
+
+        $O_requetteRecette = $connexionBD->query($S_recupererRecetteSQL); // on execute la requette
+
+        $A_recetteCategorie = $O_requetteRecette->fetchAll(PDO::FETCH_OBJ);
+
+        return $A_recetteCategorie;
+    }
 }
