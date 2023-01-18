@@ -70,12 +70,13 @@ final class ControleurRecette
         Vue::montrer('recette/blocRecetteTrois',array('recette3' => $A_recettes[2]->donneNomRecette()));
     }
 
-    public function afficheRecettesCategorieAction($I_numCategorie)
+    public function ajouterRecetteAction($S_nomRecette, $S_libelle)
     {
-        $_A_recetteCategorie = Recette::donneToutesRecettesCategorie($I_numCategorie);
-        foreach (range(0, sizeof($_A_recetteCategorie) - 1) as $_I_index) {
-            Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomRecette']));
-            Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomCategorie']));
-        }
+        Recette::ajouterRecetteBDD($S_nomRecette, $S_libelle);
+    }
+
+    public function ajouterRecetteCategorieAction($S_nomRecette, $S_nomCategorie)
+    {
+        Recette::ajouterRecetteCategorieBDD($S_nomRecette, $S_nomCategorie);
     }
 }

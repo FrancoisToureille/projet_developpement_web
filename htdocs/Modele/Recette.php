@@ -173,4 +173,82 @@ final class Recette
             return $e->getMessage();
         }
     }
+
+    /**
+     * Ajoute la la BDD la recette $S_nomRecette
+     * @param $S_nomRecette
+     * @param $S_libelle
+     * @return array|false|string|void
+     */
+    public static function ajouterRecetteBDD($S_nomRecette, $S_libelle)
+    {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $O_statement = $O_pdo->prepare("
+            INSERT INTO recette (nomRecette, libelle) VALUES (?,?)");
+            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
+            $O_statement->execute(array($S_nomRecette, $S_libelle));
+            if ($O_statement->columnCount()){
+                return $O_statement->fetchAll();
+            }
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function donnerIdRecette($S_nomRecette)
+    {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $O_statement = $O_pdo->prepare("
+            SELECT idRecette as idR FROM recette 
+            WHERE nomRecette = ?");
+            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
+            $O_statement->execute(array($S_nomRecette));
+            if ($O_statement->columnCount()){
+                return $O_statement->fetch();
+            }
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function donnerIdCategorie($S_nomCategorie)
+    {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $O_statement = $O_pdo->prepare("
+            SELECT idCategorie as idC FROM categorie 
+            WHERE nomCategorie = ?");
+            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
+            $O_statement->execute(array($S_nomCategorie));
+            if ($O_statement->columnCount()){
+                return $O_statement->fetch();
+            }
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function ajouterRecetteCategorieBDD($S_nomRecette, $S_nomCategorie)
+    {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $I_idR = self::donnerIdRecette($S_nomRecette);
+            $I_idC = self::donnerIdCategorie($S_nomCategorie);
+
+            $O_statement = $O_pdo->prepare("
+            INSERT INTO recetteCategorie 
+            VALUES (?, ?)");
+
+            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
+            $O_statement->execute(array($I_idR['idR'],$I_idC['idC']));
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
 }
