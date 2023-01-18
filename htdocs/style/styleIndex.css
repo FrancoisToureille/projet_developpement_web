@@ -100,7 +100,7 @@ header{
 .recettes {
     margin: 2vw;
     background-color: rgba(246, 239, 222, 0.9);
-    width: 400px;
+    width: 300px;
 }
 
 .titreRecettes{
@@ -218,6 +218,24 @@ a{
 }
 
 /* CSS Page Accueil */
+
+#recette2 {
+    display: none;
+}
+
+#recette3 {
+    display: none;
+}
+
+.grosBloc {
+    margin: 2vw;
+    width: 400px;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(246, 239, 222);
+
+}
 
 .recipesAndCategories{
     display: flex;

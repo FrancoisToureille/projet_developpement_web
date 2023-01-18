@@ -65,9 +65,49 @@ final class ControleurRecette
             $A_recettesBD[$I_indexRecette]->quantites);
         }
         
+        Vue::montrer('recette/grosBloc',array('grosBloc' => ""));
+
         Vue::montrer('recette/blocRecetteUn',array('recette1' => $A_recettes[0]->donneNomRecette()));
+        Vue::montrer('recette/voir', array('recette' => "ingredients:"));
+        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[0]->donneIngredients()));
+        Vue::montrer('recette/voir', array('recette' => "quantites:"));
+        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[0]->donneQuantites()));
+        Vue::montrer('recette/voir', array('recette' => "instructions:"));
+        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[0]->donneInstructions()));
+        Vue::montrer('recette/voir', array('recette' => "categories:"));
+        Vue::montrer('recette/blocFin', array('fin' =>  $A_recettes[0]->donneNomCategories()));
+
         Vue::montrer('recette/blocRecetteDeux',array('recette2' => $A_recettes[1]->donneNomRecette()));
+        Vue::montrer('recette/voir', array('recette' => "ingredients:"));
+        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[1]->donneIngredients()));
+        Vue::montrer('recette/voir', array('recette' => "quantites:"));
+        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[1]->donneQuantites()));
+        Vue::montrer('recette/voir', array('recette' => "instructions:"));
+        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[1]->donneInstructions()));
+        Vue::montrer('recette/voir', array('recette' => "categories:"));
+        Vue::montrer('recette/blocFin', array('fin' =>  $A_recettes[1]->donneNomCategories()));
+
         Vue::montrer('recette/blocRecetteTrois',array('recette3' => $A_recettes[2]->donneNomRecette()));
+        Vue::montrer('recette/voir', array('recette' => "ingredients:"));
+        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[2]->donneIngredients()));
+        Vue::montrer('recette/voir', array('recette' => "quantites:"));
+        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[2]->donneQuantites()));
+        Vue::montrer('recette/voir', array('recette' => "instructions:"));
+        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[2]->donneInstructions()));
+        Vue::montrer('recette/voir', array('recette' => "categories:"));
+        Vue::montrer('recette/blocFin', array('fin' =>  $A_recettes[2]->donneNomCategories()));
+
+        Vue::montrer('recette/grosBlocFin', array('fin' => " "));
+
+    }
+
+    public function afficheRecettesCategorieAction($I_numCategorie)
+    {
+        $_A_recetteCategorie = Recette::donneToutesRecettesCategorie($I_numCategorie);
+        foreach (range(0, sizeof($_A_recetteCategorie) - 1) as $_I_index) {
+            Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomRecette']));
+            Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomCategorie']));
+        }
     }
 
     public function ajouterRecetteAction($S_nomRecette, $S_libelle)

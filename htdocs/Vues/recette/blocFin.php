@@ -1,3 +1,3 @@
 <?php
 
-echo "</div>" . $A_vue['fin'];
+echo $A_vue['fin'] . "</div>" ;

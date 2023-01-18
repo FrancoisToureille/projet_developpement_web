@@ -39,32 +39,6 @@ final class Recette
         return $this->S_nomCategories;
     }
 
-    public static function donneToutesLesRecettesBDD() {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->query("SELECT nomRecette,libelle FROM recette");
-            $O_statement->setFetchMode(PDO::FETCH_OBJ);
-            if ($O_statement->columnCount()) {
-                return $O_statement->fetchAll();
-            }
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
-
-    public static function donneTousLesNomsDeRecettesBDD() {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $A_data = $O_pdo->query("SELECT nomRecette FROM recette")->fetchAll(PDO::FETCH_OBJ);
-            return $A_data;
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
     public static function donneRecette($S_nomRecetteDemandee) {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
@@ -92,11 +66,11 @@ final class Recette
             if ($O_statement->columnCount()) {
                 return $O_statement->fetchAll();
             }
-        }catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             return $e->getMessage();
         }
     }
-
 
     public static function donneToutesRecettes() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
@@ -178,7 +152,7 @@ final class Recette
             with recursive f (idCategorie, idPere) as (
             SELECT c1.idCategorie, c1.idPere
             FROM categorie c1
-    		WHERE idCategorie = ?
+            WHERE idCategorie = ?
             union all
             SELECT c2.idCategorie, c2.idPere
             FROM categorie c2
@@ -199,14 +173,13 @@ final class Recette
             return $e->getMessage();
         }
     }
-
-
     /**
      * Ajoute la la BDD la recette $S_nomRecette
      * @param $S_nomRecette
      * @param $S_libelle
      * @return array|false|string|void
      */
+    
     public static function ajouterRecetteBDD($S_nomRecette, $S_libelle)
     {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();

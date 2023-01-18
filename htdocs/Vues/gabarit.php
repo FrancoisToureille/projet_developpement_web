@@ -11,7 +11,7 @@
     </head>
     <body>
         <?php Vue::montrer('standard/entete');?>
-        <?php Vue::montrer('standard/navBarr', array('listeSousCategorie' => $A_vue['listeSousCategorie']));?>
+        <?php Vue::montrer('standard/navBarr');?>
         
         <?php // on met cela ici pour que nos vues déclenchées par le controleur s'écrivent ici//
         echo $A_vue['body']; ?>
