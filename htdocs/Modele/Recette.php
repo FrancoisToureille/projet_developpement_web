@@ -57,7 +57,7 @@ final class Recette
     public static function donneTousLesNomsDeRecettesBDD() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
-            $A_data = $O_pdo->query("SELECT nomRecette FROM recette")->fetchAll(PDO::FETCH_COLUMN);
+            $A_data = $O_pdo->query("SELECT nomRecette FROM recette")->fetchAll(PDO::FETCH_OBJ);
             return $A_data;
         }
         catch (PDOException $e) {
