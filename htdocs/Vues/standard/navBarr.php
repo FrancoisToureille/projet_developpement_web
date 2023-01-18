@@ -8,7 +8,7 @@
     <div class="search">
         <form action="/Recherche/rechercheRegex" method="POST">
             <input id="search" type="text" name="search_input">
-            <input type="image" id="img_loupe" alt="img_loupe" src="./image/loupe.png">
+            <input type="image" id="img_loupe" alt="img_loupe" src="/image/loupe.png">
         </form>
     </div>
 </div>
