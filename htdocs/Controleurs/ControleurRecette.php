@@ -54,4 +54,22 @@ final class ControleurRecette
         Vue::montrer('recette/blocFin',array('fin' => ""));
         
     }
+
+    public function afficheRecettesCategorieAction(): void
+    {
+        $_A_recettesBD = Recette::donneToutesRecettes();
+        $_A_recettes = array();
+        foreach (range(0, sizeof($_A_recettesBD) - 1) as $_I_indexRecette) {
+            $_A_recettes[$_I_indexRecette] = new Recette($_A_recettesBD[$_I_indexRecette]->nomRecette,
+                $_A_recettesBD[$_I_indexRecette]->libelle,
+                $_A_recettesBD[$_I_indexRecette]->categories,
+                $_A_recettesBD[$_I_indexRecette]->ingredients,
+                $_A_recettesBD[$_I_indexRecette]->quantites);
+        }
+        $_A_recetteCategorie = Recette::donneToutesRecettesCategorie(2);
+        foreach (range(0, sizeof($_A_recetteCategorie) - 1) as $_I_index) {
+            Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomRecette']));
+            Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomCategorie']));
+        }
+    }
 }
