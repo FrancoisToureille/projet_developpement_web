@@ -2,27 +2,41 @@
 
 final class Recette
 {
-    private $_S_nomRecette;
-    private $_S_instructions;
-    /*private $_A_ingredients;
-    private $_I_difficulte;*/
+    private $S_nomRecette;
+    private $S_instructions;
+    private $S_nomCategories;
+    private $S_ingredients;
+    private $_quantites;
+    /*private $_I_difficulte;*/
 
-    public function __construct($_S_nomRecette, $_S_instructions,/*$_A_ingredients, $_I_difficulte*/) { 
-        $this->_S_nomRecette = $_S_nomRecette;
-        $this->_S_instructions = $_S_instructions;
-        /*$this->_A_ingredients = $_A_ingredients;
-        $this->_I_difficulte = $_I_difficulte;*/
+    public function __construct($S_nomRecette, $S_instructions, $S_nomCategories, $S_ingredients, $S_quantites/*, $_I_difficulte*/) { 
+        $this->S_nomRecette = $S_nomRecette;
+        $this->S_instructions = $S_instructions;
+        $this->S_nomCategories = $S_nomCategories;
+        $this->S_ingredients = $S_ingredients;
+        $this->S_quantites = $S_quantites;
+        /*$this->_I_difficulte = $_I_difficulte;*/
         /* attention pas de symbole dollar sur les attributs après le this.*/
     }
 
     public function donneNomRecette()
     {
-        return $this->_S_nomRecette;
+        return $this->S_nomRecette;
+    }
+
+    public function donneQuantites()
+    {
+        return $this->S_quantites;
     }
 
     public function donneInstructions()
     {
-        return $this->_S_instructions;
+        return $this->S_instructions;
+    }
+
+    public function donnenomCategories()
+    {
+        return $this->S_nomCategories;
     }
 
     public static function donneToutesLesRecettesBDD() {
@@ -52,7 +66,24 @@ final class Recette
     public static function donneToutesNomRecetteNomCategorie() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
-            $O_statement = $O_pdo->query("SELECT nomRecette,nomCategorie FROM recette R, categorie C, recetteCategorie RC WHERE R.idRecette = RC.idRecette AND C.idCategorie = RC.idCategorie");
+            $O_statement = $O_pdo->query("SELECT r.idRecette, r.nomRecette, r.libelle, cat.categories, ing.ingredients, ing.quantites
+            FROM recette r
+            
+            INNER JOIN
+            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie) categories
+            FROM recetteCategorie rc
+            INNER JOIN categorie c ON c.idCategorie = rc.idCategorie
+            GROUP BY rc.idRecette) cat
+            
+            ON cat.rcIdRecette = r.idRecette
+            
+            INNER JOIN 
+            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle) as ingredients, GROUP_CONCAT(ri.quantite) as quantites
+            FROM recetteIngredient ri
+            INNER JOIN ingredient i ON ri.idIngredient = i.idIngredient
+            GROUP BY ri.idRecette) ing
+            
+            ON ing.riIdRecette = r.idRecette");
             $O_statement->setFetchMode(PDO::FETCH_OBJ);
             if ($O_statement->columnCount()) {
                 return $O_statement->fetchAll();
@@ -63,29 +94,48 @@ final class Recette
         }
     }
 
-    public static function donneToutesNomRecetteNomIngredient() {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->query("SELECT nomRecette, I.libelle FROM recette R, ingredient I, recetteIngredient RI WHERE R.idRecette = RI.idRecette AND I.idIngredient = RI.idIngredient");
-            $O_statement->setFetchMode(PDO::FETCH_OBJ);
-            if ($O_statement->columnCount()) {
-                return $O_statement->fetchAll();
-            }
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
     /*public function donneDifficulte()
     {
         return $this->_I_difficulte;
-    }
-    public function donneNombreIngredients() {
-        return sizeof($this->_A_ingredients); 
-    }
-    public function donneIngredients($_I_index)
-    {
-        return $this->_A_ingredients[$_I_index];
     }*/
+    
+    public function donneIngredients()
+    {
+        return $this->S_ingredients;
+    }
 
+    /**
+     * Renvoie toutes les recettes (id, nom) d'une catégorie (idCategorie)
+     * Toutes categorie fille d'une categorie sont considérées comme telle
+     * @param $I_idCategorie
+     * @return array|false|string|void
+     */
+    public static function donneToutesRecettesCategorie($I_idCategorie){
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $O_statement = $O_pdo->prepare("
+            with recursive f (idCategorie, idPere) as (
+            SELECT c1.idCategorie, c1.idPere
+            FROM categorie c1
+    		WHERE idCategorie = ?
+            union all
+            SELECT c2.idCategorie, c2.idPere
+            FROM categorie c2
+            inner join f on f.idCategorie = c2.idPere)
+            select rc.idRecette, nomRecette, rc.idCategorie, c.nomCategorie
+            from recetteCategorie rc, f, recette r, categorie c
+            where f.idCategorie = rc.idCategorie
+            AND rc.idRecette = r.idRecette
+            AND rc.idCategorie = c.idCategorie;");
+
+            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
+            $O_statement->execute(array($I_idCategorie));
+            if ($O_statement->columnCount()){
+                return $O_statement->fetchAll();
+            }
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
 }
