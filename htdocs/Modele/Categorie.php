@@ -48,16 +48,12 @@ class Categorie
         $A_recetteCategorie = array();
 
         if ($numargs < 1){
-            return $A_recetteCategorie;
+            return $A_recetteCategorie; //renvoie le tableau vide si il n'y a pas de valeurs de recherche
         }
         $connexionBD = ConnexionBDD::getInstance(); //on appelle le pdo
 
         // On ecris la requette avec les paramettres de la fonction
-        $S_recupererRecetteSQL = "SELECT DISTINCT idRecette FROM `recetteCategorie` WHERE idRecette IN (SELECT idRecette FROM `recetteCategorie` WHERE idCategorie = " . $categories[0] . ")";
-
-        for ($i = 1; $i < $numargs; $i++) {
-            $S_recupererRecetteSQL .= "AND idRecette IN (SELECT idRecette FROM `recetteCategorie` WHERE idCategorie = " . $categories[$i] . ")";
-        }
+        $S_recupererRecetteSQL = "SELECT DISTINCT idRecette FROM `recetteCategorie` WHERE idCategorie IN (" . inplode(',',$categories) . ") GROUP BY idRecette HAVING COUNT(*) >= " . $numargs . ")";
 
         $O_requetteRecette = $connexionBD->query($S_recupererRecetteSQL); // on execute la requette
 
