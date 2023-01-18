@@ -11,6 +11,5 @@ class ControleurHome
 
         Vue::montrer('home/home', array('listeCategorie' => $A_listeCategorie, 'listeSousCategorie' => $A_listeSousCategorie));
 
-
     }
 }

@@ -38,4 +38,7 @@ class Categorie
         return $this->listeCategorie;
     }
 
+    public function donneListeSousCategorie(){
+        return $this->listeSousCategorie;
+    }
 }
