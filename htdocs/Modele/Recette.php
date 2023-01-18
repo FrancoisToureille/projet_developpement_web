@@ -138,4 +138,17 @@ final class Recette
             return $e->getMessage();
         }
     }
+
+    public static function donneNomRecettePourId($I_idRecette) {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $O_statement = $O_pdo->prepare("SELECT nomRecette FROM recette WHERE idRecette = ?;");
+            $O_statement->execute(array($I_idRecette));
+            $A_data = $O_statement->fetchAll(PDO::FETCH_COLUMN);
+            return $A_data;
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
 }

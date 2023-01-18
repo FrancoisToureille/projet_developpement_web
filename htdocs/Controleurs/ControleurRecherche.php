@@ -33,12 +33,24 @@ class ControleurRecherche
     }
 
     public function rechercheRegexAction() {
-        $B_categorieSelectionnee = false; //A modif pour savoir si il y a un filtre par catégorie(s) activé 
-        if ($B_categorieSelectionnee) { //Si la recherche est filtrée par catégorie
-            $A_listeRecette = Recette::donneToutesNomRecetteNomCategorie(); //A modif, il faudrait récupérer la liste des recettes pour les catégories sélectionnées
+        $O_Categorie = new Categorie();
+        if (isset($_POST["submit"])){
+            if (!empty($_POST['categories'])){
+                $A_listeIDRecette = $O_Categorie->donneListeRecetteCategorie($_POST['categories']);
+                $A_listeRecette = array();
+                foreach ($A_listeIDRecette as $O_recette) {
+                    array_push($A_listeRecette, Recette::donneNomRecettePourId($O_recette->idRecette));
+                }
+            } 
         } else {
-            $A_listeRecette = Recette::donneTousLesNomsDeRecettesBDD(); //Il faudrait une fonction donneTousLesNomsRecettesBDD
+            $A_listeRecette = Recette::donneTousLesNomsDeRecettesBDD();
         }
+                // $B_categorieSelectionnee = false; //A modif pour savoir si il y a un filtre par catégorie(s) activé 
+        // if ($B_categorieSelectionnee) { //Si la recherche est filtrée par catégorie
+        //     $A_listeRecette = Recette::donneToutesNomRecetteNomCategorie(); //A modif, il faudrait récupérer la liste des recettes pour les catégories sélectionnées
+        // } else {
+        //     $A_listeRecette = Recette::donneTousLesNomsDeRecettesBDD(); //Il faudrait une fonction donneTousLesNomsRecettesBDD
+        // }
 
         $S_recherche = $_POST["search_input"]; //Récupere texte barre de recherche
         $A_listeRecetteRecherche = array(); 
