@@ -1,0 +1,1 @@
+<?php echo "<div class='recettes' id = 'recette3'><p class='recette'>" . $A_vue['recette3']  . "</p></div>";?>
