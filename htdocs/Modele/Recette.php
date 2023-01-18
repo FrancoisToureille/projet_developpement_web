@@ -39,6 +39,16 @@ final class Recette
         }
     }
 
+    public static function donneTousLesNomsDeRecettesBDD() {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $A_data = $O_pdo->query("SELECT nomRecette FROM recette")->fetchAll(PDO::FETCH_COLUMN);
+            return $A_data;
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
     public static function donneToutesNomRecetteNomCategorie() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {

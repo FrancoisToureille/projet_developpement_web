@@ -4,10 +4,10 @@
             <img id="img_form" alt="img_form" src="./image/img_form.png">
             <div class="connexion_txt"><a id="connexion_lien" href="index.php"><p>Connexion - Inscription</p></a></div>
         </div>
-        <div class="search">
-            <input id="search_input" type="text">
-            <img id="img_loupe" alt="img_loupe" src="./image/loupe.png">
-        </div>
+        <form action="/Recherche/rechercheRegex" method="POST">
+            <input id="search" type="text" name="search_input">
+            <input type="image" id="img_loupe" alt="img_loupe" src="./image/loupe.png">
+        </form>
     </div>
 
     <div class="homePhone">
