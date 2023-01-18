@@ -43,4 +43,17 @@ class ControleurRecherche
         Vue::montrer("recherche/rechercheRegex", array('recherche' =>  $S_AffichageRecetteRecherche));
 
     }
+
+    public function afficheResultAction(){
+
+        $O_Categorie = new Categorie();
+
+        if (isset($_POST["submit"])){
+            if (!empty($_POST['categories'])){
+                $A_listeRecetteCategorie = $O_Categorie->donneListeRecetteCategorie($_POST['categories']);
+
+                Vue::montrer('recherche/recherche', array('listeRecetteRecherche' => print_r($A_listeRecetteCategorie)));
+            }
+        }
+    }
 }
