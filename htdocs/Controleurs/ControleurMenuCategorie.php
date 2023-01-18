@@ -21,6 +21,9 @@ class ControleurMenuCategorie
 
         Vue::montrer('menuCategorie/menuCategorie', array('menuCategorie' => $S_affichageCategorie));
 
+        $controleurRecherche = new ControleurRecherche();
+        $controleurRecherche->defautAction();
+
     }
 
 }

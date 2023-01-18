@@ -53,7 +53,7 @@ class Categorie
         $connexionBD = ConnexionBDD::getInstance(); //on appelle le pdo
 
         // On ecris la requette avec les paramettres de la fonction
-        $S_recupererRecetteSQL = "SELECT DISTINCT idRecette FROM `recetteCategorie` WHERE idCategorie IN (" . inplode(',',$categories) . ") GROUP BY idRecette HAVING COUNT(*) >= " . $numargs . ")";
+        $S_recupererRecetteSQL = "SELECT DISTINCT idRecette FROM `recetteCategorie` WHERE idCategorie IN (" . implode(',',$categories) . ") GROUP BY idRecette HAVING COUNT(*) >= " . $numargs . ";";
 
         $O_requetteRecette = $connexionBD->query($S_recupererRecetteSQL); // on execute la requette
 
