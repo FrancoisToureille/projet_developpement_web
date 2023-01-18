@@ -4,13 +4,6 @@ final class ControleurRecette
 {
     public function defautAction()
     {
-        $_O_recette =  new Recette("cake au citron", "melanger le tout","cat"/*,array("farine","citron"),2*/);
-        Vue::montrer('recette/voir', array('recette' =>  $_O_recette->donneNomRecette()));
-        Vue::montrer('recette/voir', array('recette' =>  $_O_recette->donneInstructions()));
-    }
-
-    public function afficheRecettesAction()
-    {
         $_A_recettesBD = Recette::donneToutesRecettes();
         $_A_recettes = array();
         foreach (range(0, sizeof($_A_recettesBD) - 1) as $_I_indexRecette) {
@@ -20,13 +13,10 @@ final class ControleurRecette
              $_A_recettesBD[$_I_indexRecette]->ingredients,
               $_A_recettesBD[$_I_indexRecette]->quantites);
         }
-       
-        /*$_A_recettes = array(new Recette("cake au citron", "melanger le tout",array("farine","citron"),2),
-        new Recette("cake aux olives", "melanger le tout",array("farine","olive"),2));*/
 
+        Vue::montrer('recette/blocDebut',array('recettes' => "Recettes"));
         foreach (range(0, sizeof($_A_recettes) - 1) as $_I_indexRecette) {
-            Vue::montrer('recette/voir', array('recette' => "recette:"));
-            Vue::montrer('recette/voir', array('recette' =>  $_A_recettes[$_I_indexRecette]->donneNomRecette()));
+            Vue::montrer('recette/voirTitreRecette', array('titreRecette' =>  $_A_recettes[$_I_indexRecette]->donneNomRecette()));
             Vue::montrer('recette/voir', array('recette' => "ingredients:"));
             Vue::montrer('recette/voir', array('recette' =>  $_A_recettes[$_I_indexRecette]->donneIngredients()));
             Vue::montrer('recette/voir', array('recette' => "quantites:"));
@@ -36,53 +26,32 @@ final class ControleurRecette
             Vue::montrer('recette/voir', array('recette' => "categories:"));
             Vue::montrer('recette/voir', array('recette' =>  $_A_recettes[$_I_indexRecette]->donneNomCategories()));
             Vue::montrer('recette/voir', array('recette' => "\n *******"));
-            
-
-            /*$_I_nombre = $_A_recettes[$_I_indexRecette]->donneNombreIngredients();
-            foreach (range(0, $_I_nombre - 1) as $_I_indexIngredient) {
-                Vue::montrer('recette/voir', array('recette' =>  $_A_recettes[$_I_indexRecette]->donneIngredients($_I_indexIngredient)));
-
-            }
-            Vue::montrer('recette/voir', array('recette' =>  $_A_recettes[$_I_indexRecette]->donneDifficulte()));*/
         }
+        Vue::montrer('recette/blocFin',array('fin' => ""));
+
     }
 
-
-    public function afficheRecettesCategorieAction(): void
+    public function afficheRecetteAction()
     {
-        $_A_recettesBD = Recette::donneToutesRecettes();
-        $_A_recettes = array();
-        foreach (range(0, sizeof($_A_recettesBD) - 1) as $_I_indexRecette) {
-            $_A_recettes[$_I_indexRecette] = new Recette($_A_recettesBD[$_I_indexRecette]->nomRecette,
-                $_A_recettesBD[$_I_indexRecette]->libelle,
-                $_A_recettesBD[$_I_indexRecette]->categories,
-                $_A_recettesBD[$_I_indexRecette]->ingredients,
-                $_A_recettesBD[$_I_indexRecette]->quantites);
-        }
-        $_A_recetteCategorie = Recette::donneToutesRecettesCategorie(2);
-        foreach (range(0, sizeof($_A_recetteCategorie) - 1) as $_I_index) {
-            Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomRecette']));
-            Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomCategorie']));
-        }
-    }
-
-    public function afficheRecettesAleatoires($I_number)
-    {
-        $_A_recettesBD = Recette::donneToutesRecettes();
-        //print sizeof($_A_recettesBD);
-        //print_r($_A_recettesBD);
-
-        $_A_recettes = array();
-        //Affichage de $I_number recettes aléatoires
-        foreach (array_rand(range(0, sizeof($_A_recettesBD) - 1),$I_number) as $_I_indexRecette) {
-            $_A_recettes[$_I_indexRecette] = new Recette($_A_recettesBD[$_I_indexRecette]->nomRecette,
-                $_A_recettesBD[$_I_indexRecette]->libelle,
-                $_A_recettesBD[$_I_indexRecette]->categories,
-                $_A_recettesBD[$_I_indexRecette]->ingredients,
-                $_A_recettesBD[$_I_indexRecette]->quantites);
-
-            Vue::montrer('recette/voir', array('recette' => $_A_recettes[$_I_indexRecette]->donneNomRecette()));
-            Vue::montrer('recette/voir', array('recette' => $_A_recettes[$_I_indexRecette]->donnenomCategories()));
-        }
+        $_A_recettesBD = Recette::donneRecette("cake");
+        $O_recette = new Recette($_A_recettesBD[0]['nomRecette'],
+        $_A_recettesBD[0]['libelle'],
+        $_A_recettesBD[0]['categories'],
+        $_A_recettesBD[0]['ingredients'],
+        $_A_recettesBD[0]['quantites']);
+        
+        Vue::montrer('recette/blocDebut',array('recettes' => "Recettes"));
+        Vue::montrer('recette/voirTitreRecette', array('titreRecette' =>  $O_recette->donneNomRecette()));
+        Vue::montrer('recette/voir', array('recette' => "ingredients:"));
+        Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneIngredients()));
+        Vue::montrer('recette/voir', array('recette' => "quantites:"));
+        Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneQuantites()));
+        Vue::montrer('recette/voir', array('recette' => "instructions:"));
+        Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneInstructions()));
+        Vue::montrer('recette/voir', array('recette' => "categories:"));
+        Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneNomCategories()));
+        Vue::montrer('recette/voir', array('recette' => "\n *******"));
+        Vue::montrer('recette/blocFin',array('fin' => ""));
+        
     }
 }

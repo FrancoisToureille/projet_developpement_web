@@ -16,6 +16,10 @@ body{
     font-family: 'Gilda Display';
     background-image: url("../image/bg_patisserie.jpg");
     background-attachment: fixed;
+    text-align:center;
+    display:grid;
+    grid-template-rows: auto 1fr auto; 
+    min-height:100vh;
 }
 
 header{
@@ -26,11 +30,46 @@ header{
     background-color: rgba(246, 239, 222, 0.9);
 }
 
+#barreRecherche{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    background-color: rgba(246, 239, 222, 0.9);
+    display: none;
+}
+
+.categorieRecherche{
+    display: flex;
+    border-style: solid;
+    border-color: #bfb4ad;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 1vw;
+    height: 5vw;
+    font-size: 30px;
+    align-items: center;
+}
+
+#croixRecherche{
+    width: fit-content;
+}
+
+.txt_recherche{
+    padding: 1vw;
+}
+
+.croix{
+    width: 35px;
+    height: 35px;
+}
+
 .titre_page{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 60px;
+    font-size: 5vw;
 }
 
 .titre{
@@ -42,28 +81,80 @@ header{
     font-family: 'Gilda Display';
     display: flex;
     justify-content: center;
-    font-size: 25px;
+    font-size: 1.75vw;
 }
 
 #img_eclair{
-    margin-top: 60px;
+    margin-top: 3.3vw;
     rotate: 60deg;
-    width: 250px;
+    width: 16.5vw;
 }
 
-.navBarr{
+#img_ampoule{
+    margin-top: 2vw;
+    width: 14.5vw;
+    margin-bottom: 3vw;
+
+}
+
+.recettes {
+    margin: 2vw;
+    background-color: rgba(246, 239, 222, 0.9);
+    width: 400px;
+}
+
+.titreRecettes{
+    font-size: larger;
+    padding: 10px;
+    font-family: 'Cheque Bold';;
+}
+.titreRecette{
+    font-size: large;
+    padding: 5px;
+}
+
+.recette {
+    font-size: medium;
+}
+
+#navBarr{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    z-index: 2;
     background-color: rgba(246, 239, 222, 0.9);
+    height: 7.5vw;
+    
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+  
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+padding-top: 2vw;
 }
 
 #img_form{
-    width: 60px;
-    margin: 10px;
+    height: 5vw;
+    width: 5vw;
+    margin: 1vw;
+    margin-left: 1vw;
+}
+
+#img_accueil{
+    display: none;
+    height: 5vw;
+    width: 5vw;
+    margin: 1vw;
+    margin-left: 1vw;
 }
 
 .connexion{
+    margin-left: 1vw;
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
@@ -74,16 +165,27 @@ a{
     color: black;
 }
 
-.connexion_txt{
+#connexion h1 {
+    font-size: 3.5vw;
+}
+
+#connexion_txt{
     display: flex;
     justify-content: center;
     position: relative;
-    background-color: #bfb4ad;
-    padding-left: 20px;
-    align-items: center;
-    font-size: 25px;
-    margin: 10px;
-    padding-right: 20px;
+}
+
+#connexion_txt_bis{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    display: none;
+}
+
+#accueil_txt{
+    display: none;
+    justify-content: center;
+    position: relative;
 }
 
 .search{
@@ -94,17 +196,28 @@ a{
     display: flex;
     justify-content: right;
     border-style: none;
-    width: 250px;
-    height: 40px;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    font-size: 20px;
+    width:17.5vw;
+    height: 3vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
 }
 
 #img_loupe{
-    width: 60px;
-    height: 60px;
-    margin: 10px;
+    width: 3.5vw;
+    height: 3.5vw;
+    margin: 1.75vw 1vw 1vw 1vw;
 }
+
+#formGateau{
+    display: none;
+    background-color: rgb(246, 239, 222);
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+}
+
+/* CSS Page Accueil */
 
 .recipesAndCategories{
     display: flex;
@@ -115,7 +228,7 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 10%;
+    margin: 10vw;
     background-color: rgba(246, 239, 222, 0.9);
 }
 
@@ -123,21 +236,20 @@ a{
     display: flex;
     justify-content: center;
     margin: 15px;
-    font-size: 30px;
+    font-size: 2vw;
 }
 
 .recipeView{
     display: flex;
-    align-items: center;
-}
-
-#img_cannele{
-    width: 500px;
-    margin: 30px;
+    justify-content: center;
 }
 
 .arrow{
-    width: 70px;
+    width: 3.5vw;
+}
+
+.little_arrow{
+    width: 20px;
 }
 
 .right_arrow{
@@ -151,21 +263,23 @@ a{
 
 
 #slider{
-    width:80%;
-    margin:0px auto;
-    margin-top: 100px;
-    max-width: 600px;
+    align-items: center;
+    width: 80%;
+    margin: 2vw;
+    max-height: 35vw;
+    max-width: 32.5vw;
     position:relative;
     overflow:hidden;
     border: 10px solid white;
-    box-shadow:2px 5px 10px rgba(0,0,0,0.4);;
+    box-shadow:2px 5px 10px rgba(0,0,0,0.4);
+    background-color: white;
 }
 
 .slide{
     width:100%;
     display:none;
-    animation-name:fade;
-    animation-duration:1s;
+    /*animation-name:fade;
+    animation-duration:1s;*/
 }
 
 @keyframes fade{
@@ -175,18 +289,21 @@ a{
 
 #dots-con{
     text-align:center;
+
 }
 
 .dot{
     display:inline-block;
-    background:grey;
+    background:rgb(246, 239, 222);
     padding:8px;
     border-radius:50%;
     margin:10px 5px;
+    height: 0.1vw;
+    width: 0.1vw;
 }
 
 .active{
-    background:rgb(7, 67, 213);
+    background: grey;
 }
 
 .controls{
@@ -194,13 +311,8 @@ a{
     top:50%;
     transform:translateY(-50%);
     font-size:1.5em;
-    padding:15px 10px;
+    padding:15px;
     border-radius:5px;
-}
-
-.controls:hover{
-    background:white;
-    transition:0.3s;
 }
 
 .controls:active{
@@ -216,5 +328,331 @@ a{
 }
 
 .bouffe{
-    width: 500px;
+    width: 30vw;
+}
+
+.categorie{
+    display: none;
+    font-size: 20px;
+    background-color: rgba(246, 239, 222, 0.9);
+    margin: 10%;
+    padding: 40px;
+}
+
+#menu ul {
+    list-style-type: square;
+}
+
+#menu ul li ul {
+    display: none;
+    list-style: none;
+}
+
+#menu ul li:hover ul {
+    display:block;
+}
+
+/* CSS Page Inscription */
+
+#inscription{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(246, 239, 222, 0.9);
+    margin: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 50px;
+}
+
+#inscriptionFromConnexion{
+    border-style: none;
+    background: none;
+    font-family: 'Gilda Display';
+    font-size: 15px;
+}
+
+#connexionFromInscription{
+    border-style: none;
+    background: none;
+    font-family: 'Gilda Display';
+    font-size: 15px;
+}
+
+#form_inscription{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* CSS Page Connexion */
+
+#connexion{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(246, 239, 222, 0.9);
+    margin: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 50px;
+}
+
+#form_connexion{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1{
+    font-family: 'Cheque Bold';
+    font-size: 45px;
+}
+
+.entre_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3vw;
+    margin-bottom: 4vw;
+}
+
+.champs_form{
+    background-color: rgb(246, 239, 222);
+    font-family: 'Gilda Display';
+    border-style: solid;
+    font-size: 1.6vw;
+    border-color: #bfb4ad;
+    border-radius: 7px;
+    padding: 0.5vw;
+    margin: 0.5vw;
+}
+
+.valide_form{
+    display: flex;
+    justify-content: center;
+}
+
+.valideChoix{
+    font-family: 'Gilda Display';
+    background-color: #bfb4ad;
+    border-style: solid;
+    font-size: 1.8;
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+
+/* CSS Footer */
+
+footer{
+    background-color: rgba(246, 239, 222, 0.9);
+}
+
+#pieds{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1.5vw;
+}
+
+.reseaux{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.iconeRes{
+    display: flex;
+    width: 2.25vw;
+}
+
+.mention{
+    display: flex;
+    justify-content: center;
+    font-size: 1.25vw;
+    padding: 1vw;
+}
+
+.backToTop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.up_arrow{
+    rotate: 180deg;
+}
+
+
+
+.wrapper {
+  display: inline-flex;
+  list-style: none;
+  padding: 0;
+}
+
+.wrapper .icon {
+  position: relative;
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 1vw;
+  margin: 1vw;
+  width: 3.25vw;
+  height: 3.25vw;
+  font-size: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 1vw;
+  background: #ffffff;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+#menu ul li:hover ul {
+    display:block;
+}
+
+
+.bouton {
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  line-height: 5vw;
+  max-width: 27.5vw;
+  text-transform: uppercase;
+  padding-left: 1.5vw;
+  font-family: 'Gilda_display';
+  align-items: center;
+  font-size: 1.5vw;
+  margin: 0.8vw;
+  padding-right: 1.5vw;
+}
+
+.bouton:hover {
+  text-decoration: none;
+}
+
+/*btn_background*/
+.lien {
+  color: #000;
+  border: 4px solid #bfb4ad;
+  background-color: #bfb4ad;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.lien:hover {
+  border: 0.5vw solid #bfb4ad;
+  background-color: rgba(246, 239, 222, 0.9 );
+  box-shadow: 0px 0px 0px 4px #EEE2D4 inset;
+}
+
+.lien span {
+  transition: all 0.2s ease-out;
+  z-index: 2;
+}
+.lien:hover span{
+  letter-spacing: 0.13em;
+  color: #333;
+}
+
+.lien:after {
+  background: #DCD0C5;
+  content: "";
+  height: 155px;
+  left: -75px;
+  opacity: .8;
+  position: absolute;
+  top: -50px;
+  -webkit-transform: rotate(35deg);
+          transform: rotate(35deg);
+  width: 50px;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);/*easeOutCirc*/
+  z-index: 1;
+}
+
+.lien:hover:after {
+  background: #DCD0C5;
+  border: 20px solid #DCD0C5;
+  opacity: 0;
+  left: 120%;
+  -webkit-transform: rotate(40deg);
+          transform: rotate(40deg);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+  background: #1DA1F2;
+  color: #ffffff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background: #E4405F;
+  color: #ffffff;
+}
+
+.wrapper .pinterest:hover,
+.wrapper .pinterest:hover .tooltip,
+.wrapper .pinterest:hover .tooltip::before {
+  background: #CD201F;
+  color: #ffffff;
+}
+
+@media all and (min-width:0px) and (max-width: 660px) {
+
+    #connexion_txt{
+       display: none;
+    }
+    
+    #connexion_txt_bis{
+        display: contents;
+    }
+
+    #dots-con{
+        text-align:center;
+        display: none;
+    }
 }

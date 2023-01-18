@@ -1,10 +1,9 @@
 <?php
 
-class Categorie
+class menuCategorie
 {
 
     private $listeCategorie = array();
-    private $listeSousCategorie = array();
 
     public function __construct(){
         $this->chargerCategorie();
@@ -20,17 +19,16 @@ class Categorie
 
         $resultatSuperCategorie = $O_requette->fetchAll();
 
-        foreach ($resultatSuperCategorie as $superCategorie){
+        while ($superCategorie = $resultatSuperCategorie->fetch()){
             $requetteRecupererSousCategorie = "SELECT idCategorie, nomCategorie FROM categorie WHERE idPere = $superCategorie->idCategorie";
             $O_requetteSousCategorie = $connexionBD->query($requetteRecupererSousCategorie);
             $listeSousCategorie = array();
 
-            while ($categorie = $O_requetteSousCategorie->fetch(PDO::FETCH_OBJ)){
+            while ($categorie = $O_requetteSousCategorie->fetch()){
                 $listeSousCategorie[] = $categorie;
-                $this->listeSousCategorie[] =$categorie;
             }
 
-            $this->listeCategorie[$superCategorie->nomCategorie] = $listeSousCategorie;
+            $this->listeCategorie[$superCategorie] = $listeSousCategorie;
         }
     }
 
