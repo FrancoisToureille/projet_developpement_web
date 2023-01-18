@@ -92,6 +92,8 @@ final class Recette
             if ($O_statement->columnCount()) {
                 return $O_statement->fetchAll();
             }
+        }catch (PDOException $e) {
+            return $e->getMessage();
         }
     }
 
