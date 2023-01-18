@@ -53,6 +53,7 @@ final class Recette
         }
     }
 
+
     public static function donneTousLesNomsDeRecettesBDD() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
@@ -63,7 +64,39 @@ final class Recette
             return $e->getMessage();
         }
     }
-    public static function donneToutesNomRecetteNomCategorie() {
+
+    public static function donneRecette($S_nomRecetteDemandee) {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $O_statement = $O_pdo->prepare("SELECT r.idRecette, r.nomRecette, r.libelle, cat.categories, ing.ingredients, ing.quantites
+            FROM recette r
+            
+            INNER JOIN
+            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie) categories
+            FROM recetteCategorie rc
+            INNER JOIN categorie c ON c.idCategorie = rc.idCategorie
+            GROUP BY rc.idRecette) cat
+            
+            ON cat.rcIdRecette = r.idRecette
+            
+            INNER JOIN 
+            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle) as ingredients, GROUP_CONCAT(ri.quantite) as quantites
+            FROM recetteIngredient ri
+            INNER JOIN ingredient i ON ri.idIngredient = i.idIngredient
+            GROUP BY ri.idRecette) ing
+            
+            ON ing.riIdRecette = r.idRecette
+            WHERE r.nomRecette = ?;");
+            $O_statement->execute(array($S_nomRecetteDemandee));
+            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
+            if ($O_statement->columnCount()) {
+                return $O_statement->fetchAll();
+            }
+        }
+    }
+
+
+    public static function donneToutesRecettes() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
             $O_statement = $O_pdo->query("SELECT r.idRecette, r.nomRecette, r.libelle, cat.categories, ing.ingredients, ing.quantites

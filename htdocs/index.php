@@ -22,7 +22,7 @@
     $A_postParams = isset($_POST) ? $_POST : null;
 
     Vue::ouvrirTampon(); // on ouvre le tampon d'affichage, les contrôleurs qui appellent des vues les mettront dedans
-
+    
     try
     {
         /*on se connecte à la base de données*/
@@ -34,7 +34,6 @@
     {
         echo ('Une erreur s\'est produite : ' . $O_exception->getMessage());
     }
-
 
     // Les différentes sous-vues ont été "crachées" dans le tampon d'affichage, on les récupère
     $contenuPourAffichage = Vue::recupererContenuTampon();
