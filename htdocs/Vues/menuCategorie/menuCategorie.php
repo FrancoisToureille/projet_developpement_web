@@ -5,3 +5,4 @@ echo "<div class = \"menuCategorie\">
     . $A_vue['menuCategorie']  .
          "</ul>
     </div>";
+
