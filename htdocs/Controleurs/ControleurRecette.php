@@ -65,4 +65,24 @@ final class ControleurRecette
             Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomCategorie']));
         }
     }
+
+    public function afficheRecettesAleatoires($I_number)
+    {
+        $_A_recettesBD = Recette::donneToutesRecettes();
+        //print sizeof($_A_recettesBD);
+        //print_r($_A_recettesBD);
+
+        $_A_recettes = array();
+        //Affichage de $I_number recettes aléatoires
+        foreach (array_rand(range(0, sizeof($_A_recettesBD) - 1),$I_number) as $_I_indexRecette) {
+            $_A_recettes[$_I_indexRecette] = new Recette($_A_recettesBD[$_I_indexRecette]->nomRecette,
+                $_A_recettesBD[$_I_indexRecette]->libelle,
+                $_A_recettesBD[$_I_indexRecette]->categories,
+                $_A_recettesBD[$_I_indexRecette]->ingredients,
+                $_A_recettesBD[$_I_indexRecette]->quantites);
+
+            Vue::montrer('recette/voir', array('recette' => $_A_recettes[$_I_indexRecette]->donneNomRecette()));
+            Vue::montrer('recette/voir', array('recette' => $_A_recettes[$_I_indexRecette]->donnenomCategories()));
+        }
+    }
 }
