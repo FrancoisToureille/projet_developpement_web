@@ -46,7 +46,7 @@ class Categorie
         $numargs = count(!empty($categories) ? $categories : array()); // nombre d'arguments
 
         if ($numargs < 1){
-            return Recette::donneTousLesNomsDeRecettesBDD(); //renvoie la requette avec toutes les recettes si il n'y a pas de valeurs de recherche
+            return Recette::donneToutesLesRecettesNomId(); //renvoie la requette avec toutes les recettes si il n'y a pas de valeurs de recherche
         }
         $connexionBD = ConnexionBDD::getInstance(); //on appelle le pdo
 
