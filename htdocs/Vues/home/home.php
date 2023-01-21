@@ -31,7 +31,6 @@ echo "<div class = 'grosBloc'><img alt='fleche' class='arrow left_arrow' src='/i
     <p class='categories'>" . $A_vue['categories1']  . "</p></div>
     
     <div class='recettes' id = 'recette2'><p class= 'titreRecette'>" . $A_vue['recette2'] . "</p>
-    
     <p class='ingredientsTitre'> ingredients: </p>
     <p class='ingredients'>" . $A_vue['ingredients2']  . "</p>
     <p class='quantitesTitre'> quantites: </p>
@@ -42,7 +41,6 @@ echo "<div class = 'grosBloc'><img alt='fleche' class='arrow left_arrow' src='/i
     <p class='categories'>" . $A_vue['categories2']  . "</p></div>
     
     <div class='recettes' id = 'recette3'><p class='titreRecette'>" . $A_vue['recette3']  . "</p>
-        
     <p class='ingredientsTitre'> ingredients: </p>
     <p class='ingredients'>" . $A_vue['ingredients3']  . "</p>
     <p class='quantitesTitre'> quantites: </p>
