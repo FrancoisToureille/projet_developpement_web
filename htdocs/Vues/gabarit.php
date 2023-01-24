@@ -26,7 +26,7 @@
         <?php Vue::montrer('standard/connexion'); ?>
         <?php Vue::montrer('standard/pied'); ?>
         <?php echo $A_vue['body']
-                <?php Vue::montrer('standard/navBarr');?>
- */?>
+                <?php Vue::montrer('standard/navBarr');?>*/
+        ?>
     </body>
 </html>
