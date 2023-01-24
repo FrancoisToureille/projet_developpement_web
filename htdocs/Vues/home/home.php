@@ -3,11 +3,11 @@
 // liste de categoorie
 $S_affichageCategorie = "";
 foreach ($A_vue['listeCategorie'] as $superCategorie => $categorie){
-    $S_affichageCategorie .= "<li id='$superCategorie'> $superCategorie <ul>";
+    $S_affichageCategorie .= "<li id='$superCategorie'> $superCategorie <form name='categories' method='POST' action='/Recherche/afficheResult'><br>";
     foreach ($categorie as $sousCategorie){
-        $S_affichageCategorie .= "<li id='$sousCategorie->idCategorie'> $sousCategorie->nomCategorie </li>";
+        $S_affichageCategorie .= "<input id='$sousCategorie->idCategorie' type='radio' name='categories[]' value ='$sousCategorie->idCategorie' onclick='this.form.submit();'><label for='$sousCategorie->nomCategorie'>$sousCategorie->nomCategorie </label>";
     }
-    $S_affichageCategorie .= "</ul> </li>";
+    $S_affichageCategorie .= "</form> </li>";
 }
 
 echo "<div class = \"menuCategorie\">
