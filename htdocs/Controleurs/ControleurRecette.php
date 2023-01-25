@@ -30,10 +30,11 @@ final class ControleurRecette
         Vue::montrer('recette/blocFin',array('fin' => ""));
     }
 
-    public function afficheRecetteAction()
+    public function afficheRecetteAction($A_parametres)
     {
-        if (isset($_POST['id'])){
-            $_A_recettesBD = Recette::donneRecette($_POST['id']);
+        Vue::montrer('recette/voir', array('recette' => $A_parametres[0]));
+        if (isset($A_parametres[0])){
+            $_A_recettesBD = Recette::donneRecette($A_parametres[0]);
             if (!empty($_A_recettesBD)){
                 $O_recette = new Recette($_A_recettesBD[0]['nomRecette'],
                     $_A_recettesBD[0]['libelle'],
