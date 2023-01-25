@@ -6,6 +6,9 @@ class ControleurRecherche
     public function defautAction(){
 
         $O_Categorie = new Categorie();
+
+        $A_listeRecette = $O_Categorie->donneListeRecetteCategorie(array());
+        Vue::montrer("recherche/afficheResult", array('listeRecetteRecherche' =>  $A_listeRecette));
     }
 
 
