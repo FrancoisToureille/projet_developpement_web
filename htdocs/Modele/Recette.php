@@ -279,6 +279,30 @@ final class Recette
         }
     }
 
+    public static function ajouterAvis($I_idUtilisateur, $I_idRecette, $I_notation){
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try{
+            //On prepare puis execute la requette d'insertion
+            $O_requetteAjouterAvis = $O_pdo->prepare("INSERT INTO `avis` (`idUtilisateur`, `idRecette`, `notation`) VALUES (?, ?, ?)");
+            $O_requetteAjouterAvis->execute(array($I_idUtilisateur, $I_idRecette, $I_notation));
+        } catch (PDOException $e){
+            return $e->getMessage();
+        }
+    }
+
+    public static function moyenneAvisRecette($I_idRecette){
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try{
+            //On prepare puis execute la requette d'insertion
+            $O_requetteMoyenne = $O_pdo->prepare("SELECT ROUND(AVG(notation),1) AS moyenne FROM `avis` WHERE idRecette = ?;");
+            $O_requetteMoyenne->execute(array($I_idRecette));
+            $I_moyenne = $O_requetteMoyenne->fetch(PDO::FETCH_OBJ)->moyenne;
+            return $I_moyenne;
+        } catch (PDOException $e){
+            return $e->getMessage();
+        }
+    }
+
     public static function donnerIdCategorie($S_nomCategorie)
     {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
