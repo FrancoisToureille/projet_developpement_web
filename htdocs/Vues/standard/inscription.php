@@ -5,7 +5,7 @@
             <p id="informationInscription"></p>
             <input class="champs_form" type='text' name="nom" placeholder="Pseudo" required oninvalid="this.setCustomValidity('Renseigner un pseudo')" oninput="this.setCustomValidity('')">
             <input class="champs_form" type='email' name="email" placeholder="E-mail" required oninvalid="this.setCustomValidity('Renseigner un E-mail')" oninput="this.setCustomValidity('')">
-            <input class="champs_form" type='password' name="motDePasse" placeholder="Mot de passe" required oninvalid="this.setCustomValidity('Renseigner un mot de passe')" oninput="this.setCustomValidity('')">
+            <input class="champs_form" type='password' name="motDePasse" placeholder="Mot de passe" required oninvalid="this.setCustomValidity('Renseigner un mot de passe respectant les conditions ci-dessous')" oninput="this.setCustomValidity('')" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])^\S{12,}$">
             <p>Votre mot de passe doit contenir</p>
             <ul>
                 <li><p>1 Majuscule minimum</p></li>

@@ -16,14 +16,16 @@ final class ControleurConnexion
         if (isset($_POST["admin"])) {
             $S_statusName = "admin";
             $S_status = "Utilisateur";
+            $S_nomId = "idAdmin";
         }
-        else {
+        if (isset($_POST["Utilisateur"])) {
             $S_statusName = "Utilisateur";
             $S_status = "admin";
+            $S_nomId = "idUtilisateur";
         }
         $emailConnexion = $_POST["email"];
         $mdpConnexion = $_POST["motDePasse"];
 
-        Vue::montrer('connexion/resultatConnexion', array('statusBouton' => $S_status, 'statusBoutonName' => $S_statusName, 'information' =>  $connexion->seConnecter($emailConnexion,$mdpConnexion, $S_statusName)));
+        Vue::montrer('connexion/resultatConnexion', array('statusBouton' => $S_status, 'statusBoutonName' => $S_statusName, 'information' =>  $connexion->seConnecter($emailConnexion,$mdpConnexion, $S_statusName, $S_nomId)));
     }
 }
