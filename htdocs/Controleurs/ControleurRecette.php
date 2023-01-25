@@ -115,13 +115,4 @@ final class ControleurRecette
         }
     }
 
-    public function ajouterRecetteAction($S_nomRecette, $S_libelle)
-    {
-        Recette::ajouterRecetteBDD($S_nomRecette, $S_libelle);
-    }
-
-    public function ajouterRecetteCategorieAction($S_nomRecette, $S_nomCategorie)
-    {
-        Recette::ajouterRecetteCategorieBDD($S_nomRecette, $S_nomCategorie);
-    }
 }

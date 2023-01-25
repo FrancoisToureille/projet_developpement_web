@@ -229,6 +229,56 @@ final class Recette
         }
     }
 
+    public static function ajouterRecette($S_nomRecette, $S_libelleRecette, $S_lienImage=NULL, $A_idsCategories, $A_idsQuantiteIngredients, $A_nomsQuantiteNouveauxIngredients=array())
+    {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            //on prepare la requette pour inserer la recette
+            $O_requetteRecette = $O_pdo->prepare("
+            INSERT INTO `recette` (`idRecette`, `nomRecette`, `libelle`, `image`) 
+            VALUES (NULL, ?, ?, ?);");
+            $O_requetteRecette->execute(array($S_nomRecette, $S_libelleRecette, $S_lienImage));
+
+            // On recupere l'Id de la recette inserée
+            $O_requetteId = $O_pdo->query("SELECT MAX(idRecette) AS id FROM recette");
+            $I_idRecette = $O_requetteId->fetch(PDO::FETCH_OBJ)->id;
+
+            // On prepare toutes les autres requettes
+            $O_requetteCategorie = $O_pdo->prepare("INSERT INTO `recetteCategorie` (`idRecette`, `idCategorie`) 
+            VALUES (" . $I_idRecette . ", ?)");
+            $O_requetteIngredients = $O_pdo->prepare("INSERT INTO `recetteIngredient` (`idRecette`, `idIngredient`, `quantite`) 
+            VALUES (" . $I_idRecette . ", ?, ?)");
+            $O_requetteNouveauxIngredients = $O_pdo->prepare("INSERT INTO `ingredient` (`idIngredient`, `libelle`) 
+            VALUES (NULL, ?)");
+
+            //On ajoute les categories
+            foreach ($A_idsCategories as $I_idCategorie){
+                $O_requetteCategorie->execute(array($I_idCategorie));
+            }
+
+            //On ajoute les ingredients
+            foreach ($A_idsQuantiteIngredients as $I_idIngredient => $S_quantiteIngredient){
+                $O_requetteIngredients->execute(array($I_idIngredient,$S_quantiteIngredient));
+            }
+
+            //On créé les nouveaux ingrédients
+            foreach ($A_nomsQuantiteNouveauxIngredients as $S_nomNouveauIngredient => $S_quantiteNouveauIngredient){
+                //creation de l'ingredient
+                $O_requetteNouveauxIngredients->execute(array($S_nomNouveauIngredient));
+
+                // On recupere l'Id de l'ingredient inseré
+                $O_requetteIdIngredient = $O_pdo->query("SELECT MAX(idIngredient) AS id FROM ingredient");
+                $I_idIngredient = $O_requetteIdIngredient->fetch(PDO::FETCH_OBJ)->id;
+
+                //On ajoute le nouvel ingredient à la recette
+                $O_requetteIngredients->execute(array($I_idIngredient,$S_quantiteNouveauIngredient));
+            }
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
     public static function donnerIdCategorie($S_nomCategorie)
     {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
@@ -241,38 +291,6 @@ final class Recette
             if ($O_statement->columnCount()){
                 return $O_statement->fetch();
             }
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public static function ajouterRecetteCategorieBDD($S_nomRecette, $S_nomCategorie)
-    {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $I_idR = self::donnerIdRecette($S_nomRecette);
-            $I_idC = self::donnerIdCategorie($S_nomCategorie);
-
-            $O_statement = $O_pdo->prepare("
-            INSERT INTO recetteCategorie 
-            VALUES (?, ?)");
-
-            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
-            $O_statement->execute(array($I_idR['idR'], $I_idC['idC']));
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public static function donneNomRecettePourId($I_idRecette) {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->prepare("SELECT nomRecette FROM recette WHERE idRecette = ?;");
-            $O_statement->execute(array($I_idRecette));
-            $A_data = $O_statement->fetchAll(PDO::FETCH_COLUMN);
-            return $A_data;
         }
         catch (PDOException $e) {
             return $e->getMessage();
