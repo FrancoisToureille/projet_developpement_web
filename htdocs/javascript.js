@@ -92,6 +92,24 @@ function goToInscription(){
   document.getElementById('inscription').style.display = 'flex';
 }
 
+/**
+ * Change la valeur et le nom du bouton selon le mode de connexion
+ */
+function changeUtilisateur(){
+    const bouton = document.getElementById('boutonChangeUtilisateur');
+    if (bouton.value == "Utilisateur") {
+        bouton.value = "admin";
+        bouton.name = 'Utilisateur';
+    }
+    else {
+        bouton.value = "Utilisateur";
+        bouton.name = "admin";
+    }
+    return;
+}
+
+document.getElementById('boutonChangeUtilisateur').onclick = changeUtilisateur;
+
 function afficheRecherche(){
   document.getElementById('barreRecherche').style.display = 'flex';
 }

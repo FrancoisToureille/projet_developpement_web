@@ -12,14 +12,18 @@ final class ControleurConnexion
      * @return void
      */
     public function resultatConnexionAction() {
-
         $connexion = new ConnexionUtilisateurBDD();
-
+        if (isset($_POST["admin"])) {
+            $S_statusName = "admin";
+            $S_status = "Utilisateur";
+        }
+        else {
+            $S_statusName = "Utilisateur";
+            $S_status = "admin";
+        }
         $emailConnexion = $_POST["email"];
         $mdpConnexion = $_POST["motDePasse"];
-        //echo $emailConnexion;
-        //echo $mdpConnexion;
-        //echo sha1($mdpConnexion);
-        Vue::montrer('connexion/resultatConnexion', array('information' =>  $connexion->seConnecter($emailConnexion,$mdpConnexion)));
+
+        Vue::montrer('connexion/resultatConnexion', array('statusBouton' => $S_status, 'statusBoutonName' => $S_statusName, 'information' =>  $connexion->seConnecter($emailConnexion,$mdpConnexion, $S_statusName)));
     }
 }
