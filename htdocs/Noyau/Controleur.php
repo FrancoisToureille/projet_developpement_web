@@ -20,7 +20,7 @@ final class Controleur
 
         if (empty($A_urlDecortique[0])) {
             // Nous avons pris le parti de préfixer tous les controleurs par "Controleur"
-            $A_urlDecortique[0] = 'ControleurDefaut';
+            $A_urlDecortique[0] = 'ControleurHome';
         } else {
             $A_urlDecortique[0] = 'Controleur' . ucfirst($A_urlDecortique[0]);
         }
@@ -53,12 +53,15 @@ final class Controleur
     public function executer()
     {
         if (!class_exists($this->_A_urlDecortique['controleur'])) {
-            throw new ControleurException($this->_A_urlDecortique['controleur'] . " n'est pas un controleur valide.");
+            header('Location: /Home');
+            die();
+            //throw new ControleurException($this->_A_urlDecortique['controleur'] . " n'est pas un controleur valide.");
         }
-
         if (!method_exists($this->_A_urlDecortique['controleur'], $this->_A_urlDecortique['action'])) {
-            throw new ControleurException($this->_A_urlDecortique['action'] . " du contrôleur " .
-                $this->_A_urlDecortique['controleur'] . " n'est pas une action valide.");
+            header('Location: /' . substr($this->_A_urlDecortique['controleur'],10));
+            die();
+            //throw new ControleurException($this->_A_urlDecortique['action'] . " du contrôleur " .
+            //    $this->_A_urlDecortique['controleur'] . " n'est pas une action valide.");
         }
 
         $B_called = call_user_func_array(array(new $this->_A_urlDecortique['controleur'],
