@@ -32,7 +32,6 @@ final class ControleurRecette
 
     public function afficheRecetteAction($A_parametres)
     {
-        Vue::montrer('recette/voir', array('recette' => $A_parametres[0]));
         if (isset($A_parametres[0])){
             $_A_recettesBD = Recette::donneRecette($A_parametres[0]);
             if (!empty($_A_recettesBD)){
