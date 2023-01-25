@@ -60,7 +60,7 @@ final class Recette
             FROM recette r
             
             INNER JOIN
-            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie) categories
+            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie SEPARATOR ', ') categories
             FROM recetteCategorie rc
             INNER JOIN categorie c ON c.idCategorie = rc.idCategorie
             GROUP BY rc.idRecette) cat
@@ -68,7 +68,7 @@ final class Recette
             ON cat.rcIdRecette = r.idRecette
             
             INNER JOIN 
-            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle) as ingredients, GROUP_CONCAT(ri.quantite) as quantites
+            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle SEPARATOR ', ') as ingredients, GROUP_CONCAT(ri.quantite SEPARATOR ', ') as quantites
             FROM recetteIngredient ri
             INNER JOIN ingredient i ON ri.idIngredient = i.idIngredient
             GROUP BY ri.idRecette) ing
@@ -93,7 +93,7 @@ final class Recette
             FROM recette r
             
             INNER JOIN
-            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie) categories
+            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie SEPARATOR ', ') categories
             FROM recetteCategorie rc
             INNER JOIN categorie c ON c.idCategorie = rc.idCategorie
             GROUP BY rc.idRecette) cat
@@ -101,7 +101,7 @@ final class Recette
             ON cat.rcIdRecette = r.idRecette
             
             INNER JOIN 
-            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle) as ingredients, GROUP_CONCAT(ri.quantite) as quantites
+            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle SEPARATOR ', ') as ingredients, GROUP_CONCAT(ri.quantite SEPARATOR ', ') as quantites
             FROM recetteIngredient ri
             INNER JOIN ingredient i ON ri.idIngredient = i.idIngredient
             GROUP BY ri.idRecette) ing
@@ -124,7 +124,7 @@ final class Recette
             FROM recette r
             
             INNER JOIN
-            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie) categories
+            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie SEPARATOR ', ') categories
             FROM recetteCategorie rc
             INNER JOIN categorie c ON c.idCategorie = rc.idCategorie
             GROUP BY rc.idRecette) cat
@@ -132,7 +132,7 @@ final class Recette
             ON cat.rcIdRecette = r.idRecette
             
             INNER JOIN 
-            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle) as ingredients, GROUP_CONCAT(ri.quantite) as quantites
+            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle SEPARATOR ', ') as ingredients, GROUP_CONCAT(ri.quantite SEPARATOR ', ') as quantites
             FROM recetteIngredient ri
             INNER JOIN ingredient i ON ri.idIngredient = i.idIngredient
             GROUP BY ri.idRecette) ing
