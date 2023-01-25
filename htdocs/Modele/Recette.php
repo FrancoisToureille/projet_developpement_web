@@ -42,7 +42,7 @@ final class Recette
     public static function donneToutesLesRecettesNomId() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
-            $O_statement = $O_pdo->query("SELECT nomRecette,libelle FROM recette");
+            $O_statement = $O_pdo->query("SELECT nomRecette, idRecette FROM recette");
             $O_statement->setFetchMode(PDO::FETCH_OBJ);
             if ($O_statement->columnCount()) {
                 return $O_statement->fetchAll();
