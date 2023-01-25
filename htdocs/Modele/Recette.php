@@ -53,7 +53,7 @@ final class Recette
         }
     }
 
-    public static function donneRecette($S_nomRecetteDemandee) {
+    public static function donneRecette($S_idRecetteDemandee) {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
             $O_statement = $O_pdo->prepare("SELECT r.idRecette, r.nomRecette, r.libelle, cat.categories, ing.ingredients, ing.quantites
@@ -74,8 +74,8 @@ final class Recette
             GROUP BY ri.idRecette) ing
             
             ON ing.riIdRecette = r.idRecette
-            WHERE r.nomRecette = ?;");
-            $O_statement->execute(array($S_nomRecetteDemandee));
+            WHERE r.idRecette = ?;");
+            $O_statement->execute(array($S_idRecetteDemandee));
             $O_statement->setFetchMode(PDO::FETCH_ASSOC);
             if ($O_statement->columnCount()) {
                 return $O_statement->fetchAll();

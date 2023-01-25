@@ -19,19 +19,11 @@ class ControleurRecherche
         $A_listeRecetteRecherche = array();
         foreach ($A_listeRecette as $key => $O_recette) { //Pour chaque recette
             if (preg_match('/'.$S_recherche.'/i', $O_recette->nomRecette)) { //Si elle correspond à la recherche
-                array_push($A_listeRecetteRecherche, $O_recette->nomRecette);
+                array_push($A_listeRecetteRecherche, $O_recette);
             }
         }
 
-        $S_AffichageRecetteRecherche = "";
-        foreach ($A_listeRecetteRecherche as $S_recetteRecherche) { //A modifier pour bien afficher
-            $S_AffichageRecetteRecherche .= $S_recetteRecherche . "<br />";
-        }
-        Vue::montrer("recherche/rechercheRegex", array('recherche' =>  $S_AffichageRecetteRecherche));
-
-
-        //Vue::montrer('recherche/recherche', array('listeRecetteRecherche' => print_r($A_listeRecetteCategorie)));
-
+        Vue::montrer("recherche/afficheResult", array('listeRecetteRecherche' =>  $A_listeRecetteRecherche));
 
     }
 }

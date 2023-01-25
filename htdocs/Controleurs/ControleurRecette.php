@@ -32,25 +32,30 @@ final class ControleurRecette
 
     public function afficheRecetteAction()
     {
-        $_A_recettesBD = Recette::donneRecette("cake");
-        $O_recette = new Recette($_A_recettesBD[0]['nomRecette'],
-        $_A_recettesBD[0]['libelle'],
-        $_A_recettesBD[0]['categories'],
-        $_A_recettesBD[0]['ingredients'],
-        $_A_recettesBD[0]['quantites']);
-        
-        Vue::montrer('recette/blocDebut',array('recettes' => "Recettes"));
-        Vue::montrer('recette/voirTitreRecette', array('titreRecette' =>  $O_recette->donneNomRecette()));
-        Vue::montrer('recette/voir', array('recette' => "ingredients:"));
-        Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneIngredients()));
-        Vue::montrer('recette/voir', array('recette' => "quantites:"));
-        Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneQuantites()));
-        Vue::montrer('recette/voir', array('recette' => "instructions:"));
-        Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneInstructions()));
-        Vue::montrer('recette/voir', array('recette' => "categories:"));
-        Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneNomCategories()));
-        Vue::montrer('recette/voir', array('recette' => "\n *******"));
-        Vue::montrer('recette/blocFin',array('fin' => ""));     
+        if (isset($_POST['id'])){
+            $_A_recettesBD = Recette::donneRecette($_POST['id']);
+            if (!empty($_A_recettesBD)){
+                $O_recette = new Recette($_A_recettesBD[0]['nomRecette'],
+                    $_A_recettesBD[0]['libelle'],
+                    $_A_recettesBD[0]['categories'],
+                    $_A_recettesBD[0]['ingredients'],
+                    $_A_recettesBD[0]['quantites']);
+
+                Vue::montrer('recette/blocDebut',array('recettes' => "Recettes"));
+                Vue::montrer('recette/voirTitreRecette', array('titreRecette' =>  $O_recette->donneNomRecette()));
+                Vue::montrer('recette/voir', array('recette' => "ingredients:"));
+                Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneIngredients()));
+                Vue::montrer('recette/voir', array('recette' => "quantites:"));
+                Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneQuantites()));
+                Vue::montrer('recette/voir', array('recette' => "instructions:"));
+                Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneInstructions()));
+                Vue::montrer('recette/voir', array('recette' => "categories:"));
+                Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneNomCategories()));
+                Vue::montrer('recette/voir', array('recette' => "\n *******"));
+                Vue::montrer('recette/blocFin',array('fin' => ""));
+            }
+        }
+
     }
 
     public function afficheRecettesAleatoiresAction()
