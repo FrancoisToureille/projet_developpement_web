@@ -78,12 +78,12 @@ function goToInscription(){
  */
 function changeUtilisateur(){
     const bouton = document.getElementById('boutonChangeUtilisateur');
-    if (bouton.value == "Go Utilisateur") {
-        bouton.value = "Go admin";
+    if (bouton.value == "Utilisateur") {
+        bouton.value = "admin";
         bouton.name = 'Utilisateur';
     }
     else {
-        bouton.value = "Go Utilisateur";
+        bouton.value = "Utilisateur";
         bouton.name = "admin";
     }
     return;
@@ -117,22 +117,4 @@ function formDown(){
 function formUp(){
   document.getElementById('formGateau').style.display = 'none';
   document.getElementById('barreRecherche').style.backgroundColor = "green"
-}
-
-// When the user scrolls the page, execute myFunction
-window.onscroll = function() {scrollFixTop()};
-
-// Get the navbar
-var navbar = document.getElementById("navBarr");
-
-// Get the offset position of the navbar
-var sticky = navbar.offsetTop;
-
-// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function scrollFixTop() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
 }
