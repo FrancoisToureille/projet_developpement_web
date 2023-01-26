@@ -25,12 +25,15 @@ class InscriptionUtilisateurBDD {
                         try {
                             echo "Je vais m'inscrire";
                             //On crée un nouvel utilisateur dans la BDD
-                            $motDePasseHasher = sha1($S_motDePasse);
-                            $S_requete = $O_pdo->query("INSERT INTO Utilisateur(nom,email,motDePasse) VALUES('$S_nomUtilisateur','$S_email','$motDePasseHasher')");
-                            $O_requete->setFetchMode(PDO::FETCH_OBJ);
+                            $S_motDePasseHasher = sha1($S_motDePasse);
+                            $S_requete = $O_pdo->query("INSERT INTO Utilisateur(nom,email,motDePasse) VALUES('$S_nomUtilisateur','$S_email','$S_motDePasseHasher')");
+
+                            $O_requete2 = $O_pdo->query("SELECT idUtilisateur, nom  FROM Utilisateur WHERE email='" . $S_email . "' AND motDePasse='" . $S_motDePasseHasher ."'");
+                            $O_requete2->setFetchMode(PDO::FETCH_NUM);
+                            $O_lignes = $O_requete2->fetch();
                             //Assigne l'email et le nom du résultat de la table à la session correspondante
-                            $_SESSION['emailPersonneConnectee'] = $S_email;
-                            $_SESSION['nomPersonneConnectee'] = $S_nomUtilisateur;
+                            $_SESSION['idPersonneConnectee'] = $O_lignes[0];
+                            $_SESSION['nomPersonneConnectee'] = $O_lignes[1];
                             return $_SESSION['nomPersonneConnectee'] . ", vous êtes inscrit et connecté!";
                         } catch (PDOException $e) {
                             return $e->getMessage();
