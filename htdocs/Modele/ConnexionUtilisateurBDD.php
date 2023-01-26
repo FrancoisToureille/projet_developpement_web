@@ -16,6 +16,7 @@ class ConnexionUtilisateurBDD {
                         return $O_lignes[1] . ", vous êtes déjà connecté!";
                     }
                     else {
+                        mettreAJourDerniereConnexion($_SESSION['idPersonneConnectee'], $S_statusName, $S_nomId);
                         return $O_lignes[1] . ", vous êtes connecté!";
                     }
                 }
@@ -27,11 +28,23 @@ class ConnexionUtilisateurBDD {
             $S_messageUtilisateurDeco = "";
             //On n'enregistre/supprime aucun identifiant de session
             if (!empty($_SESSION['idPersonneConnectee']) && !empty($_SESSION['nomPersonneConnectee'])) {
+                self::mettreAJourDerniereConnexion($_SESSION['idPersonneConnectee'], $S_statusName, $S_nomId);
                 $S_messageUtilisateurDeco = $_SESSION['nomPersonneConnectee'] . " vous êtes déconnecté!<br/>";
             }
             $_SESSION['idPersonneConnectee'] = null;
             $_SESSION['nomPersonneConnectee'] = null;
             return $S_messageUtilisateurDeco . "Nom d'utilisateur et/ou mot de passe incorrect(s)";
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public static function mettreAJourDerniereConnexion($S_idPersonneConnectee, $S_statusName, $S_nomId) {
+        $O_pdo = ConnexionBDD::getInstance();
+        try {
+            $O_requete = $O_pdo->query("UPDATE $S_statusName SET derniereConnexion=CURRENT_DATE WHERE $S_nomId='" . $S_idPersonneConnectee . "'");
+            return;
         }
         catch (PDOException $e) {
             return $e->getMessage();

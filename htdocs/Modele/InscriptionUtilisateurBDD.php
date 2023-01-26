@@ -25,7 +25,7 @@ class InscriptionUtilisateurBDD {
                         try {
                             //On crée un nouvel utilisateur dans la BDD
                             $S_motDePasseHasher = sha1($S_motDePasse);
-                            $S_requete = $O_pdo->query("INSERT INTO Utilisateur(nom,email,motDePasse) VALUES('$S_nomUtilisateur','$S_email','$S_motDePasseHasher')");
+                            $S_requete = $O_pdo->query("INSERT INTO Utilisateur(nom,email,motDePasse,premiereConnexion) VALUES('$S_nomUtilisateur','$S_email','$S_motDePasseHasher',CURRENT_DATE())");
 
                             $O_requete2 = $O_pdo->query("SELECT idUtilisateur, nom  FROM Utilisateur WHERE email='" . $S_email . "' AND motDePasse='" . $S_motDePasseHasher ."'");
                             $O_requete2->setFetchMode(PDO::FETCH_NUM);
