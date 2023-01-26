@@ -68,6 +68,7 @@ class ConnexionBDD
     * @return ConnexionBDD $instance
     */
 
+  /** singleton créé pour avoir une connexion à la base de données */
   public static function getInstance()
   {  
     if(is_null(self::$instance))
@@ -92,40 +93,4 @@ class ConnexionBDD
   {
     return $this->PDOInstance->query($query);
   }
-
-  /*
-
-    //Declaration of private variables
-    private static ConnexionBDD $instance;
-
-    private PDO $pdo;
-
-    public function __construct($S_userName, $S_password)
-    {
-        try {
-            $S_dsn = 'mysql:S_host=mysql-eclair-d-eugenie.alwaysdata.net;S_dbName=eclair-d-eugenie_db';
-            $this->pdo = new PDO($S_dsn, $S_userName, $S_password); //Link with the database
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public function getPdo(): PDO
-    {
-
-        var_dump($this);
-        return self::instance->pdo;
-    }
-
-    public static function getInstance() {
-        return self::instance;
-    }
-
-    public static function connect(string $username, string $password) {
-            //self::$instance = new self($username, $password);
-        self::instance =  new self($username, $password);
-
-        return self::instance;
-    }*/
 }
