@@ -1,3 +1,3 @@
 <?php
 
-echo "<p class='recette'>" . $A_vue['recette']  . "</p>";
+echo "<p class='recetteText'>" . $A_vue['recette']  . "</p>";
