@@ -19,8 +19,20 @@ echo
             <div class = 'grosBloc'>
                 <img alt='fleche' class='arrow left_arrow' src='/image/fleche.png' onclick='recettePrecedente()'> 
                 <div class='recettes' id = 'recette1'>
-                    <p class= 'titreRecette'>" . $A_vue['recette1'] . "</p>
-                    <p class='ingredientsTitre'> ingredients: </p>
+                    <p class= 'titreRecette'>" . $A_vue['recette1'] . "</p> ";
+
+                    if ($A_vue['moyenneNotation1'] == null){
+                        echo"<div class='moyenneAvis'>
+                             <p>Il n'y a pas d'avis pour cette recette...</p>
+                             </div>";
+                    } else {
+                        echo"<div class='moyenneAvis'>
+                             <p>La moyenne des avis est de " . $A_vue['moyenneNotation1'] . "</p>
+                             <input type='range' id='notation' name='notation' min='0' max='5' value='" . $A_vue['moyenneNotation'] . "' disabled>
+                             </div>";
+                    }
+
+echo               "<p class='ingredientsTitre'> ingredients: </p>
                     <p class='ingredients'>" . $A_vue['ingredients1']  . "</p>
                     <p class='quantitesTitre'> quantites: </p>
                     <p class='quantites'>" . $A_vue['quantites1']  . "</p>
@@ -31,8 +43,20 @@ echo
                 </div>
 
                 <div class='recettes' id = 'recette2'>
-                    <p class= 'titreRecette'>" . $A_vue['recette2'] . "</p>
-                    <p class='ingredientsTitre'> ingredients: </p>
+                    <p class= 'titreRecette'>" . $A_vue['recette2'] . "</p>";
+
+                    if ($A_vue['moyenneNotation2'] == null){
+                        echo"<div class='moyenneAvis'>
+                             <p>Il n'y a pas d'avis pour cette recette...</p>
+                             </div>";
+                    } else {
+                        echo"<div class='moyenneAvis'>
+                             <p>La moyenne des avis est de " . $A_vue['moyenneNotation2'] . "</p>
+                             <input type='range' id='notation' name='notation' min='0' max='5' value='" . $A_vue['moyenneNotation'] . "' disabled>
+                             </div>";
+                    }
+
+echo               "<p class='ingredientsTitre'> ingredients: </p>
                     <p class='ingredients'>" . $A_vue['ingredients2']  . "</p>
                     <p class='quantitesTitre'> quantites: </p>
                     <p class='quantites'>" . $A_vue['quantites2']  . "</p>
@@ -43,8 +67,20 @@ echo
                 </div>
 
                 <div class='recettes' id = 'recette3'>
-                    <p class='titreRecette'>" . $A_vue['recette3']  . "</p>
-                    <p class='ingredientsTitre'> ingredients: </p>
+                    <p class='titreRecette'>" . $A_vue['recette3']  . "</p>";
+
+                    if ($A_vue['moyenneNotation3'] == null){
+                        echo"<div class='moyenneAvis'>
+                             <p>Il n'y a pas d'avis pour cette recette...</p>
+                             </div>";
+                    } else {
+                        echo"<div class='moyenneAvis'>
+                             <p>La moyenne des avis est de " . $A_vue['moyenneNotation3'] . "</p>
+                             <input type='range' id='notation' name='notation' min='0' max='5' value='" . $A_vue['moyenneNotation'] . "' disabled>
+                             </div>";
+                    }
+
+echo               "<p class='ingredientsTitre'> ingredients: </p>
                     <p class='ingredients'>" . $A_vue['ingredients3']  . "</p>
                     <p class='quantitesTitre'> quantites: </p>
                     <p class='quantites'>" . $A_vue['quantites3']  . "</p>
