@@ -115,8 +115,12 @@ header{
     display: flex;
     flex-direction: row;
     padding: 1.25vw;
+    flex-wrap: wrap;
 }
 
+.categorieCheckBox{
+    flex-wrap: wrap;
+}
 
 .sticky {
     position: fixed;
@@ -368,6 +372,10 @@ a{
 
 #menu ul li:hover ul {
     display:block;
+}
+
+li form {
+    flex-wrap: wrap;
 }
 
 /* CSS Page Inscription */
@@ -689,7 +697,7 @@ footer{
 .recettes {
     margin: 2vw;
     background-color: rgba(246, 239, 222, 0.9);
-    width: 400px;
+    width: 40vw;
 }
 
 .titreRecettes{
@@ -731,7 +739,6 @@ footer{
 
 .grosBloc {
     margin: 2vw;
-    width: 400px;;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -789,7 +796,6 @@ footer{
 @media all and (min-width:0px) and (max-width: 450px) {
 
     footer {
-        position: fixed;
         bottom: 0;
         width: 100vw;
     }
@@ -797,14 +803,6 @@ footer{
     .bouffe {
         width: 45vw;
         height: 45vw;
-    }
-
-    .left_arrow {
-        display: none;
-    }
-
-    .right_arrow {
-        display: none;
     }
 
     #slider {
@@ -819,8 +817,83 @@ footer{
         text-align:center;
         display: none;
     }
+
+    #afficheResult{
+        margin: 50%;
+        font-size: 15vw;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 17vw;
+    }
+
 }
 
+@media all and (min-width:1200px) and (max-width: 1600px) {
+
+    .recette{
+        width: 30vw;
+    }
+
+    #afficheResult{
+        margin: 10%;
+        font-size: 2.5vw;
+        margin-left: 35%;
+        margin-right: 35%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 3.2vw;
+    }
+}
+
+@media all and (min-width:800px) and (max-width: 1200px) {
+    .recette{
+        width: 40vw;
+    }
+    #recetteEtCategorie{
+        flex-direction: column;
+    }
+
+    #afficheResult{
+        margin: 20%;
+        font-size: 4vw;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 5vw;
+    }
+}
+
+@media all and (max-width: 800px) {
+
+    .recette{
+        width: 60vw;
+    }
+
+    #recetteEtCategorie{
+        flex-direction: column;
+    }
+
+    #blocRecettes{
+        flex-direction: column;
+    }
+
+    #afficheResult{
+        margin: 50%;
+        font-size: 7vw;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 8vw;
+    }
+}
 
 @media all and (min-width:450px) and (max-width: 600px) {
 
@@ -853,14 +926,6 @@ footer{
         width: 45vw;
         height: 45vw;
     }
-    
-    .left_arrow {
-        display: none;
-    }
-
-    .right_arrow {
-        display: none;
-    }
 
     .content {
         min-height: 100vh;
@@ -882,5 +947,16 @@ footer{
     #dots-con{
         text-align:center;
         display: none;
+    }
+
+    #afficheResult{
+        margin: 55%;
+        font-size: 9vw;
+        margin-left: 7%;
+        margin-right: 7%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 10vw;
     }
 }

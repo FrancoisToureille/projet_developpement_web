@@ -4,7 +4,7 @@
 $S_affichageCheckBox = "";
 
 foreach ($A_vue['listeSousCategorie'] as $item){
-    $S_affichageCheckBox .= "<input type='checkbox' name='categories[]' value='$item->idCategorie'>$item->nomCategorie</input>";
+    $S_affichageCheckBox .= "<div class='categorieCheckBox'><input type='checkbox' name='categories[]' value='$item->idCategorie'>$item->nomCategorie</input></div>";
 }
 
 $S_affichageCheckBox .= "<input type='submit' value='Soumettre' name='submit'></form>";
