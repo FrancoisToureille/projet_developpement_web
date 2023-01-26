@@ -48,7 +48,7 @@ header{
     width: 100%;
     padding: 1vw;
     height: 5vw;
-    font-size: 30px;
+    font-size: 2.5vw;
     align-items: center;
 }
 
@@ -97,35 +97,26 @@ header{
 
 }
 
-.recettes {
-    margin: 2vw;
-    background-color: rgba(246, 239, 222, 0.9);
-    width: 300px;
-}
-
-.titreRecettes{
-    font-size: larger;
-    padding: 10px;
-    font-family: 'Cheque Bold';;
-}
-.titreRecette{
-    font-size: large;
-    padding: 5px;
-}
-
-.recette {
-    font-size: medium;
-}
-
 #navBarr{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     z-index: 2;
     background-color: rgba(246, 239, 222, 0.9);
-    height: 7.5vw;
-    
 }
+
+#barreAutre{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#barreCategorie{
+    display: flex;
+    flex-direction: row;
+    padding: 1.25vw;
+}
+
 
 .sticky {
     position: fixed;
@@ -135,7 +126,7 @@ header{
   
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + .content {
-padding-top: 2vw;
+    padding-top: 2vw;
 }
 
 #img_form{
@@ -169,20 +160,20 @@ a{
     font-size: 3.5vw;
 }
 
-#connexion_txt{
+#connexion_txt {
     display: flex;
     justify-content: center;
     position: relative;
 }
 
-#connexion_txt_bis{
+#connexion_txt_mobile {
     display: flex;
     justify-content: center;
     position: relative;
     display: none;
 }
 
-#accueil_txt{
+#accueil_txt {
     display: none;
     justify-content: center;
     position: relative;
@@ -203,51 +194,52 @@ a{
     margin-bottom: 2vw;
 }
 
+#search_form{
+    display: flex;
+    flex-direction: row;
+}
+
 #img_loupe{
     width: 3.5vw;
     height: 3.5vw;
     margin: 1.75vw 1vw 1vw 1vw;
 }
 
-#formGateau{
-    display: none;
+.formCategorie{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
     background-color: rgb(246, 239, 222);
     position: absolute;
     z-index: 3;
     width: 100%;
 }
 
+#formGateau{
+    display: none;
+}
+
+#formDifficulte{
+    display: none;
+}
+
+#formCout{
+    display: none;
+}
+
+#formAutre{
+    display: none;
+}
+
 /* CSS Page Accueil */
-.image {
-    max-width: 300px;
-    max-height: 300px;
-}
-
-#recette2,#image2 {
-    display: none;
-}
-
-#recette3, #image3 {
-    display: none;
-}
-
-#blocRecettes{
-    display: flex;
-}
-
-.grosBloc {
-    margin: 2vw;
-    width: 400px;;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(246, 239, 222);
-
-}
 
 .recipesAndCategories{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10%;
+    align-items: center;
+
 }
 
 .randomRecipe{
@@ -389,13 +381,19 @@ a{
     margin-left: 30%;
     margin-right: 30%;
     padding: 50px;
+    height: 40vw;
+}
+
+
+#inscription h1 {
+    font-size: 3.5vw;
 }
 
 #inscriptionFromConnexion{
     border-style: none;
     background: none;
     font-family: 'Gilda Display';
-    font-size: 15px;
+    font-size: 1vw;
 }
 
 #inscriptionFromConnexion:hover{
@@ -406,7 +404,7 @@ a{
     border-style: none;
     background: none;
     font-family: 'Gilda Display';
-    font-size: 15px;
+    font-size: 1vw;
 }
 
 #connexionFromInscription:hover{
@@ -423,7 +421,7 @@ a{
 
 #connexion{
     display: none;
-    flex-direction: column;
+    flex-direction: column; 
     align-items: center;
     background-color: rgba(246, 239, 222, 0.9);
     margin: 10%;
@@ -456,6 +454,7 @@ h1{
     justify-content: center;
     margin-top: 3vw;
     margin-bottom: 4vw;
+    font-size: 1vw;
     align-items: center;
 }
 
@@ -518,10 +517,13 @@ footer{
     padding: 1vw;
 }
 
-.backToTop{
+#backToTop{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-self: center;
+    width: min-content;
+    padding: 1vw;
 }
 
 .up_arrow{
@@ -577,12 +579,12 @@ footer{
   letter-spacing: 0.1em;
   cursor: pointer;
   line-height: 5vw;
-  max-width: 27.5vw;
+  max-width: 28.5vw;
   text-transform: uppercase;
   padding-left: 1.5vw;
   font-family: 'Gilda_display';
   align-items: center;
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   margin: 0.8vw;
   padding-right: 1.5vw;
 }
@@ -684,6 +686,73 @@ footer{
   color: #ffffff;
 }
 
+.recettes {
+    margin: 2vw;
+    background-color: rgba(246, 239, 222, 0.9);
+    width: 400px;
+}
+
+.titreRecettes{
+    font-size: larger;
+    padding: 10px;
+    font-family: 'Cheque Bold';;
+}
+.titreRecette{
+    font-size: large;
+    padding: 5px;
+}
+
+.recette {
+    font-size: medium;
+}
+
+#recette2, #image2 {
+    display: none;
+}
+
+#recette3, #image3 {
+    display: none;
+}
+
+.image{
+    width: 300px;
+    height: 250px;
+}
+
+#blocRecettes{
+    display: flex;
+}
+
+#img_recette{
+    display: flex;
+    align-self: center;
+}
+
+.grosBloc {
+    margin: 2vw;
+    width: 400px;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(246, 239, 222);
+
+}
+
+#recetteEtCategorie{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.menuCategorie{
+    display: flex;
+    justify-content: center;
+    margin: 2vw;
+    padding: 1.5vw;
+    align-items: left;
+    background-color: rgba(246, 239, 222, 0.9);
+}
+
 @media all and (min-width:0px) and (max-width: 450px) {
 
     footer {
@@ -718,6 +787,7 @@ footer{
         display: none;
     }
 }
+
 
 @media all and (min-width:450px) and (max-width: 600px) {
 
@@ -779,42 +849,5 @@ footer{
     #dots-con{
         text-align:center;
         display: none;
-    }
-}
-
-@media all and (min-width:600px) and (max-width: 900px) {
-    
-    .content {
-        margin-bottom: -14rem;
-    }
-
-    footer, .push    {
-        height: 14rem;
-    }
-
-    #dots-con{
-        text-align:center;
-        display: none;
-    }
-
-    #slider {
-        align-items: center;
-        width: 80%;
-        margin: 5vw;
-        max-height: 50vw;
-        max-width: 50vw;
-    }
-    
-    .left_arrow {
-        display: none;
-    }
-
-    .right_arrow {
-        display: none;
-    }
-
-    .bouffe {
-        width: 45vw;
-        height: 45vw;
     }
 }
