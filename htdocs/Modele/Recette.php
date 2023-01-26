@@ -7,15 +7,15 @@ final class Recette
     private $S_nomCategories;
     private $S_ingredients;
     private $_quantites;
-    /*private $_I_difficulte;*/
+    private $S_image;
 
-    public function __construct($S_nomRecette, $S_instructions, $S_nomCategories, $S_ingredients, $S_quantites/*, $_I_difficulte*/) { 
+    public function __construct($S_nomRecette, $S_instructions, $S_nomCategories, $S_ingredients, $S_quantites,$S_image = null) { 
         $this->S_nomRecette = $S_nomRecette;
         $this->S_instructions = $S_instructions;
         $this->S_nomCategories = $S_nomCategories;
         $this->S_ingredients = $S_ingredients;
         $this->S_quantites = $S_quantites;
-        /*$this->_I_difficulte = $_I_difficulte;*/
+        $this->S_image = $S_image;
         /* attention pas de symbole dollar sur les attributs après le this.*/
     }
 
@@ -37,6 +37,11 @@ final class Recette
     public function donnenomCategories()
     {
         return $this->S_nomCategories;
+    }
+
+    public function donneImage()
+    {
+        return $this->S_image;
     }
 
     public static function donneToutesLesRecettesNomId() {
@@ -117,14 +122,14 @@ final class Recette
         }
     }
 
-    public static function donneRecettesAleatoires() {
+    public static function donneRecettesAleatoiresImage() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
-            $O_statement = $O_pdo->query("SELECT r.idRecette, r.nomRecette, r.libelle, cat.categories, ing.ingredients, ing.quantites
+            $O_statement = $O_pdo->query("SELECT r.idRecette, r.nomRecette, r.libelle, r.image, cat.categories, ing.ingredients, ing.quantites
             FROM recette r
             
             INNER JOIN
-            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie SEPARATOR ', ') categories
+            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie) categories
             FROM recetteCategorie rc
             INNER JOIN categorie c ON c.idCategorie = rc.idCategorie
             GROUP BY rc.idRecette) cat
@@ -132,7 +137,7 @@ final class Recette
             ON cat.rcIdRecette = r.idRecette
             
             INNER JOIN 
-            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle SEPARATOR ', ') as ingredients, GROUP_CONCAT(ri.quantite SEPARATOR ', ') as quantites
+            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle) as ingredients, GROUP_CONCAT(ri.quantite) as quantites
             FROM recetteIngredient ri
             INNER JOIN ingredient i ON ri.idIngredient = i.idIngredient
             GROUP BY ri.idRecette) ing

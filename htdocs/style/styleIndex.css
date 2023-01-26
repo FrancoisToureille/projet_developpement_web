@@ -218,13 +218,21 @@ a{
 }
 
 /* CSS Page Accueil */
+.image {
+    max-width: 300px;
+    max-height: 300px;
+}
 
-#recette2 {
+#recette2,#image2 {
     display: none;
 }
 
-#recette3 {
+#recette3, #image3 {
     display: none;
+}
+
+#blocRecettes{
+    display: flex;
 }
 
 .grosBloc {

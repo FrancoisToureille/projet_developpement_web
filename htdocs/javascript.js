@@ -1,70 +1,48 @@
-var slides = document.querySelectorAll(".slide");
-var dots = document.querySelectorAll(".dot");
-var index = 0;
-
-function prevSlide(n){
-    index+=n;
-    console.log("prevSlide is called");
-    changeSlide();
-}
-
-function nextSlide(n){
-    index+=n;
-    changeSlide();
-}
-
-changeSlide();
-
 function recettePrecedente(){
   if(document.getElementById('recette1').style.display!='none') {
       document.getElementById('recette1').style.display='none';
+      document.getElementById('image1').style.display='none';
       document.getElementById('recette3').style.display='initial';  
+      document.getElementById('image3').style.display='initial';  
   }
 
   else if(document.getElementById('recette3').style.display!='none') {
     document.getElementById('recette3').style.display='none';
+    document.getElementById('image3').style.display='none';
     document.getElementById('recette2').style.display='initial';
+    document.getElementById('image2').style.display='initial';
+
   }
   
   else if(document.getElementById('recette2').style.display!='none') {
       document.getElementById('recette2').style.display='none';
+      document.getElementById('image2').style.display='none';
       document.getElementById('recette1').style.display='initial';  
+      document.getElementById('image1').style.display='initial';  
   }
 }
 
 function recetteSuivante(){
   if(document.getElementById('recette1').style.display!='none') {
       document.getElementById('recette1').style.display='none';
+      document.getElementById('image1').style.display='none';
       document.getElementById('recette2').style.display='initial';
+      document.getElementById('image2').style.display='initial';
+
   }
   else if(document.getElementById('recette2').style.display!='none') {
     document.getElementById('recette2').style.display='none';
+    document.getElementById('image2').style.display='none';
     document.getElementById('recette3').style.display='initial';  
+    document.getElementById('image3').style.display='initial';  
   }
   else {
     document.getElementById('recette3').style.display='none';
+    document.getElementById('image3').style.display='none';
     document.getElementById('recette1').style.display='initial';  
+    document.getElementById('image1').style.display='initial';  
+
   }
-
-}
-
-
-function changeSlide(){
-
-  if(index>slides.length-1)
-      index=0;
-
-  if(index<0)
-      index=slides.length-1;
-
-      for(let i=0;i<slides.length;i++){
-          slides[i].style.display = "none";
-          dots[i].classList.remove("active");
-      }
-
-      slides[index].style.display = "block";
-      dots[index].classList.add("active");
-
 }
 
 function goToConnexion(){
