@@ -16,7 +16,12 @@ class ControleurRecherche
 
         $O_Categorie = new Categorie();
 
-        $A_listeRecette = $O_Categorie->donneListeRecetteCategorie($_POST['categories']);
+        if (!isset($_POST["categories"])) {
+            $A_listeRecette = $O_Categorie->donneListeRecetteCategorie("");
+        }
+        else {
+            $A_listeRecette = $O_Categorie->donneListeRecetteCategorie($_POST["categories"]);
+        }
 
         $S_recherche = !empty($_POST["search_input"]) ? $_POST["search_input"] : ""; //Récupere texte barre de recherche
         $A_listeRecetteRecherche = array();
