@@ -8,4 +8,5 @@ echo '<script>
     document.getElementById("img_form").style.display = "none";
     document.getElementById("boutonChangeUtilisateur").value = "' . $A_vue['statusBouton'] . '";
     document.getElementById("boutonChangeUtilisateur").name = "' . $A_vue['statusBoutonName'] . '";
-    document.getElementById("informationConnexion").innerHTML = "' . $A_vue['information'] . '" </script>';
+    document.getElementById("informationConnexion").innerHTML = "' . $A_vue['information'] . '"; 
+    </script>';

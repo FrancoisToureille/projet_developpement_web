@@ -17,8 +17,8 @@ echo "<div class = \"menuCategorie\">
     </div>";
 
 
-//Recettes aléatoires
-echo "<div class = 'grosBloc'><img alt='fleche' class='arrow left_arrow' src='/image/fleche.png' onclick='recettePrecedente()'> 
+//Recettes alÃ©atoires
+echo "<div id ='blocRecettes'><div class = 'grosBloc'><img alt='fleche' class='arrow left_arrow' src='/image/fleche.png' onclick='recettePrecedente()'> 
     <div class='recettes' id = 'recette1'><p class= 'titreRecette'>" . $A_vue['recette1'] . "</p>
 
     <p class='ingredientsTitre'> ingredients: </p>
@@ -29,6 +29,7 @@ echo "<div class = 'grosBloc'><img alt='fleche' class='arrow left_arrow' src='/i
     <p class='instructions'>" . $A_vue['instructions1']  . "</p>
     <p class='categoriesTitre'> categories: </p>
     <p class='categories'>" . $A_vue['categories1']  . "</p></div>
+
     
     <div class='recettes' id = 'recette2'><p class= 'titreRecette'>" . $A_vue['recette2'] . "</p>
     <p class='ingredientsTitre'> ingredients: </p>
@@ -50,4 +51,7 @@ echo "<div class = 'grosBloc'><img alt='fleche' class='arrow left_arrow' src='/i
     <p class='categoriesTitre'> categories: </p>
     <p class='categories'>" . $A_vue['categories3']  . "</p></div>
     
-    <img alt='fleche' class='arrow right_arrow' src='/image/fleche.png' onclick='recetteSuivante()'></div>";
+    <img alt='fleche' class='arrow right_arrow' src='/image/fleche.png' onclick='recetteSuivante()'></div>
+    <img class='image' id='image1' src=" .$A_vue['image1'] .">
+    <img class='image' id='image2' src=" .$A_vue['image2'] .">
+    <img class='image' id='image3' src=" .$A_vue['image3'] ."></div>";

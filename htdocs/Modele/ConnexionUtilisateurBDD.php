@@ -1,23 +1,40 @@
 <?php
-//session_start();
+session_start(); //demarre la session
 class ConnexionUtilisateurBDD {
     public static function seConnecter($S_email, $S_motDePasse, $S_statusName, $S_nomId) {
         $O_pdo = ConnexionBDD::getInstance();
         try {
-            $O_requete = $O_pdo->query("SELECT $S_nomId  FROM $S_statusName WHERE email='" . $S_email . "' AND motDePasse='" . $S_motDePasse ."'");
-            $O_requete->setFetchMode(PDO::FETCH_OBJ);
+            $S_motDePasseHasher = sha1($S_motDePasse);
+            $O_requete = $O_pdo->query("SELECT $S_nomId, email, nom  FROM $S_statusName WHERE email='" . $S_email . "' AND motDePasse='" . $S_motDePasseHasher ."'");
+            $O_requete->setFetchMode(PDO::FETCH_NUM);
+            echo "SELECT $S_nomId, email, nom  FROM $S_statusName WHERE email='" . $S_email . "' AND motDePasse='" . $S_motDePasseHasher ."'";
             if ($O_requete->rowCount()) {
-                if (isset($_SESSION['idUtilisateur'])) {
-                    echo print_r($_SESSION['idUtilisateur'], true);
-                    return "Utilisateur déjà connecté";
-                    exit();
+                $O_lignes = $O_requete->fetch(); //On récupère le résultat
+                //On regarde il y a déjà une connexion établie
+                echo $_SESSION['emailPersonneConnectee'];
+                echo $_SESSION['nomPersonneConnectee'];
+                if (!empty($_SESSION['emailPersonneConnectee']) && !empty($_SESSION['nomPersonneConnectee'])) {
+                    //On regarde si la personne qui se connecte est déjà connectée
+                    if ($_SESSION['emailPersonneConnectee']==$O_lignes[1] && $_SESSION['nomPersonneConnectee']==$O_lignes[2]) {
+                        return $O_lignes[2] . ", vous êtes déjà connecté!";
+                    }
+                    else {
+                        return $O_lignes[2] . ", vous êtes connecté!";
+                    }
                 }
-                $_SESSION['idUtilisateur'] = $O_requete->fetch();
-                echo print_r($_SESSION['idUtilisateur'], true);
-                return "Utilisateur connecté";
-                exit();
+                //On enregistre les identifiants de la session
+                $_SESSION['emailPersonneConnectee'] = $O_lignes[1]; //Assigne l'email du résultat de la table à la session emailPersonneConnectee
+                $_SESSION['nomPersonneConnectee'] = $O_lignes[2];//Assigne le nom du résultat de la table à la session nomPersonneConnectee
+                return $O_lignes[1] . ", vous êtes connecté!";
             }
-            return "Nom d'utilisateur et/ou mot de passe incorrect(s)";
+            $S_messageUtilisateurDeco = "";
+            //On n'enregistre/supprime aucun identifiant de session
+            if (!empty($_SESSION['emailPersonneConnectee']) && !empty($_SESSION['nomPersonneConnectee'])) {
+                $S_messageUtilisateurDeco = $_SESSION['nomPersonneConnectee'] . " vous êtes déconnecté!<br/>";
+            }
+            $_SESSION['emailPersonneConnectee'] = null;
+            $_SESSION['nomPersonneConnectee'] = null;
+            return $S_messageUtilisateurDeco . "Nom d'utilisateur et/ou mot de passe incorrect(s)";
         }
         catch (PDOException $e) {
             return $e->getMessage();

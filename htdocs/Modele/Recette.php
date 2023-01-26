@@ -1,5 +1,6 @@
 <?php
 
+/*classe Recette utilisée dans les controleurs quand on récupère les données de la base*/
 final class Recette
 {
     private $S_nomRecette;
@@ -7,17 +8,19 @@ final class Recette
     private $S_nomCategories;
     private $S_ingredients;
     private $_quantites;
-    /*private $_I_difficulte;*/
+    private $S_image;
 
-    public function __construct($S_nomRecette, $S_instructions, $S_nomCategories, $S_ingredients, $S_quantites/*, $_I_difficulte*/) { 
+    public function __construct($S_nomRecette, $S_instructions, $S_nomCategories, $S_ingredients, $S_quantites,$S_image = null) { 
         $this->S_nomRecette = $S_nomRecette;
         $this->S_instructions = $S_instructions;
         $this->S_nomCategories = $S_nomCategories;
         $this->S_ingredients = $S_ingredients;
         $this->S_quantites = $S_quantites;
-        /*$this->_I_difficulte = $_I_difficulte;*/
+        $this->S_image = $S_image;
         /* attention pas de symbole dollar sur les attributs après le this.*/
     }
+
+    /*accesseurs*/
 
     public function donneNomRecette()
     {
@@ -39,20 +42,20 @@ final class Recette
         return $this->S_nomCategories;
     }
 
-    public static function donneToutesLesRecettesNomId() {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->query("SELECT nomRecette, idRecette FROM recette");
-            $O_statement->setFetchMode(PDO::FETCH_OBJ);
-            if ($O_statement->columnCount()) {
-                return $O_statement->fetchAll();
-            }
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
+    public function donneIngredients()
+    {
+        return $this->S_ingredients;
     }
 
+    public function donneImage()
+    {
+        return $this->S_image;
+    }
+
+
+    /**méthodes liées à la base de données */
+
+    /**méthode recuperant les informations sur une recette sélectionnée */
     public static function donneRecette($S_idRecetteDemandee) {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
@@ -86,6 +89,7 @@ final class Recette
         }
     }
 
+    /**méthode recuperant les informations sur toutes les recettes existantes */
     public static function donneToutesRecettes() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
@@ -117,14 +121,15 @@ final class Recette
         }
     }
 
-    public static function donneRecettesAleatoires() {
+    /**méthode recuperant les informations de trois recettes au hasard */
+    public static function donneRecettesAleatoiresImage() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
-            $O_statement = $O_pdo->query("SELECT r.idRecette, r.nomRecette, r.libelle, cat.categories, ing.ingredients, ing.quantites
+            $O_statement = $O_pdo->query("SELECT r.idRecette, r.nomRecette, r.libelle, r.image, cat.categories, ing.ingredients, ing.quantites
             FROM recette r
             
             INNER JOIN
-            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie SEPARATOR ', ') categories
+            (SELECT rc.idRecette as rcIdRecette, GROUP_CONCAT(c.nomCategorie) categories
             FROM recetteCategorie rc
             INNER JOIN categorie c ON c.idCategorie = rc.idCategorie
             GROUP BY rc.idRecette) cat
@@ -132,7 +137,7 @@ final class Recette
             ON cat.rcIdRecette = r.idRecette
             
             INNER JOIN 
-            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle SEPARATOR ', ') as ingredients, GROUP_CONCAT(ri.quantite SEPARATOR ', ') as quantites
+            (SELECT ri.idRecette as riIdRecette, GROUP_CONCAT(i.libelle) as ingredients, GROUP_CONCAT(ri.quantite) as quantites
             FROM recetteIngredient ri
             INNER JOIN ingredient i ON ri.idIngredient = i.idIngredient
             GROUP BY ri.idRecette) ing
@@ -148,11 +153,6 @@ final class Recette
         }
     }
     
-    public function donneIngredients()
-    {
-        return $this->S_ingredients;
-    }
-
     /**
      * Renvoie toutes les recettes (id, nom) d'une catégorie (idCategorie)
      * Toutes categorie fille d'une categorie sont considérées comme telle
@@ -193,41 +193,6 @@ final class Recette
      * @param $S_libelle
      * @return array|false|string|void
      */
-    
-    public static function ajouterRecetteBDD($S_nomRecette, $S_libelle)
-    {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->prepare("
-            INSERT INTO recette (nomRecette, libelle) VALUES (?,?)");
-            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
-            $O_statement->execute(array($S_nomRecette, $S_libelle));
-            if ($O_statement->columnCount()){
-                return $O_statement->fetchAll();
-            }
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public static function donnerIdRecette($S_nomRecette)
-    {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->prepare("
-            SELECT idRecette as idR FROM recette 
-            WHERE nomRecette = ?");
-            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
-            $O_statement->execute(array($S_nomRecette));
-            if ($O_statement->columnCount()){
-                return $O_statement->fetch();
-            }
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
 
     public static function ajouterRecette($S_nomRecette, $S_libelleRecette, $S_lienImage=NULL, $A_idsCategories, $A_idsQuantiteIngredients, $A_nomsQuantiteNouveauxIngredients=array())
     {
@@ -279,6 +244,7 @@ final class Recette
         }
     }
 
+    /**méthode ajoutant un avis dans la table avis, utilisée lorque l'on donne son avis avec le slider */
     public static function ajouterAvis($I_idUtilisateur, $I_idRecette, $I_notation){
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try{
@@ -290,6 +256,7 @@ final class Recette
         }
     }
 
+    /**méthode renvoyant l'avis moyen pour une recette */
     public static function moyenneAvisRecette($I_idRecette){
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try{
@@ -299,24 +266,6 @@ final class Recette
             $I_moyenne = $O_requetteMoyenne->fetch(PDO::FETCH_OBJ)->moyenne;
             return $I_moyenne;
         } catch (PDOException $e){
-            return $e->getMessage();
-        }
-    }
-
-    public static function donnerIdCategorie($S_nomCategorie)
-    {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->prepare("
-            SELECT idCategorie as idC FROM categorie 
-            WHERE nomCategorie = ?");
-            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
-            $O_statement->execute(array($S_nomCategorie));
-            if ($O_statement->columnCount()){
-                return $O_statement->fetch();
-            }
-        }
-        catch (PDOException $e) {
             return $e->getMessage();
         }
     }
