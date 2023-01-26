@@ -41,8 +41,24 @@ final class ControleurRecette
                     $_A_recettesBD[0]['ingredients'],
                     $_A_recettesBD[0]['quantites']);
 
+                //recuperer id uttilisateur
+                $I_idUtilisateur = 1; // CHANGER
+                $B_estConnecté = true; // CHANGER AVEC LE TEST
+                $I_notation = Recette::avisUtilisateur($I_idUtilisateur,$A_parametres[0]);
+
+
                 Vue::montrer('recette/blocDebut',array('recettes' => "Recettes"));
                 Vue::montrer('recette/voirTitreRecette', array('titreRecette' =>  $O_recette->donneNomRecette()));
+
+                if ($B_estConnecté){
+                    if ($I_notation == null){
+                        Vue::montrer('recette/ajouterAvis', array('idRecette' => $A_parametres[0]));
+                    }
+                    else{
+                        Vue::montrer('recette/montrerAvis', array('notation' => $I_notation));
+                    }
+                }
+
                 Vue::montrer('recette/voir', array('recette' => "ingredients:"));
                 Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneIngredients()));
                 Vue::montrer('recette/voir', array('recette' => "quantites:"));
@@ -115,18 +131,21 @@ final class ControleurRecette
         }
     }
 
-    public function ajouterAvisAction($A_arguments){
+    public function ajouterAvisAction($A_parametres){
 
         //verifie si l'utilisateur est connecté et recup son id
+        $I_idUtilisateur = 1;
 
-        if(!empty($A_arguments) && sizeof($A_arguments) == 1 && !empty($_POST['notation'])){
 
+        if(!empty($A_parametres) && sizeof($A_parametres) == 1 && !empty($_POST['notation'])){
+            //On verifie s'il n'y a pas déja un avis
+            $I_notation = Recette::avisUtilisateur($I_idUtilisateur,$A_parametres[0]);
+            if ($I_notation == null){
+                Recette::ajouterAvis($I_idUtilisateur, $A_parametres[0], $_POST['notation']);
+            }
         }
-
-        Vue::montrer('recette/voir', array('recette' => print_r($A_arguments)));
-        Vue::montrer('recette/voir', array('recette' => $_POST['notation']));
-
-        Vue::montrer('recette/ajouterAvis', array('idRecette' => 12));
+        //On retourne sur la recette
+        header( 'Location: /recette/afficheRecette/' . $A_parametres[0]);
     }
 
 }
