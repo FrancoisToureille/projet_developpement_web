@@ -15,12 +15,12 @@ final class ControleurConnexion
         $connexion = new ConnexionUtilisateurBDD();
         if (isset($_POST["admin"])) {
             $S_statusName = "admin";
-            $S_status = "Utilisateur";
+            $S_status = "Go Utilisateur";
             $S_nomId = "idAdmin";
         }
         if (isset($_POST["Utilisateur"])) {
             $S_statusName = "Utilisateur";
-            $S_status = "admin";
+            $S_status = "Go admin";
             $S_nomId = "idUtilisateur";
         }
         $emailConnexion = $_POST["email"];
