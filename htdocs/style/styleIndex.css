@@ -218,13 +218,21 @@ a{
 }
 
 /* CSS Page Accueil */
+.image {
+    max-width: 300px;
+    max-height: 300px;
+}
 
-#recette2 {
+#recette2,#image2 {
     display: none;
 }
 
-#recette3 {
+#recette3, #image3 {
     display: none;
+}
+
+#blocRecettes{
+    display: flex;
 }
 
 .grosBloc {
@@ -390,11 +398,19 @@ a{
     font-size: 15px;
 }
 
+#inscriptionFromConnexion:hover{
+    background-color: aliceblue;
+}
+
 #connexionFromInscription{
     border-style: none;
     background: none;
     font-family: 'Gilda Display';
     font-size: 15px;
+}
+
+#connexionFromInscription:hover{
+    background-color: aliceblue;
 }
 
 #form_inscription{
@@ -669,6 +685,25 @@ footer{
 }
 
 @media all and (min-width:0px) and (max-width: 660px) {
+    body {
+        display:grid;
+        grid-template-rows: auto 1fr auto; 
+        min-height: 100vh;
+    }
+
+    .bouton {
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        line-height: 5vw;
+        max-width: 27vw;
+        text-transform: uppercase;
+        padding-left: 1.5vw;
+        font-family: 'Gilda_display';
+        align-items: center;
+        font-size: 1.3vw;
+        margin: 0.8vw;
+        padding-right: 1.5vw;
+    }
 
     #connexion_txt{
        display: none;
