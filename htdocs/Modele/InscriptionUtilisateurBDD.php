@@ -1,4 +1,5 @@
 <?php
+session_start(); //Démarrage de la session
 class InscriptionUtilisateurBDD {
     public static function sinscrire($S_nomUtilisateur, $S_motDePasse, $S_motDePasseVerification, $S_email) {
         $O_pdo = ConnexionBDD::getInstance();
@@ -22,10 +23,15 @@ class InscriptionUtilisateurBDD {
                     if ($S_motDePasse === $S_motDePasseVerification) {
                         //On vérifie que les 2 mots de passe sont les mêmes
                         try {
+                            echo "Je vais m'inscrire";
                             //On crée un nouvel utilisateur dans la BDD
                             $motDePasseHasher = sha1($S_motDePasse);
-                            $O_requete = $O_pdo->query("INSERT INTO Utilisateur(nom,email,motDePasse) VALUES('" . $S_nomUtilisateur . "','" . $S_email . "','" . $motDePasseHasher . "')");
-                            return "Inscription effectuée";
+                            $S_requete = $O_pdo->query("INSERT INTO Utilisateur(nom,email,motDePasse) VALUES('$S_nomUtilisateur','$S_email','$motDePasseHasher')");
+                            $O_requete->setFetchMode(PDO::FETCH_OBJ);
+                            //Assigne l'email et le nom du résultat de la table à la session correspondante
+                            $_SESSION['emailPersonneConnectee'] = $S_email;
+                            $_SESSION['nomPersonneConnectee'] = $S_nomUtilisateur;
+                            return $_SESSION['nomPersonneConnectee'] . ", vous êtes inscrit et connecté!";
                         } catch (PDOException $e) {
                             return $e->getMessage();
                         }
