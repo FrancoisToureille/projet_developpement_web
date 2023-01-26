@@ -115,4 +115,18 @@ final class ControleurRecette
         }
     }
 
+    public function ajouterAvisAction($A_arguments){
+
+        //verifie si l'utilisateur est connecté et recup son id
+
+        if(!empty($A_arguments) && sizeof($A_arguments) == 1 && !empty($_POST['notation'])){
+
+        }
+
+        Vue::montrer('recette/voir', array('recette' => print_r($A_arguments)));
+        Vue::montrer('recette/voir', array('recette' => $_POST['notation']));
+
+        Vue::montrer('recette/ajouterAvis', array('idRecette' => 12));
+    }
+
 }

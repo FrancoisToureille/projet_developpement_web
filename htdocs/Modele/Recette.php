@@ -290,6 +290,20 @@ final class Recette
         }
     }
 
+    public static function avisUtilisateur($I_idUtilisateur, $I_idRecette){
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try{
+            //On prepare puis execute la requette
+            $O_requetteAjouterAvis = $O_pdo->prepare("SELECT notation FROM `avis` WHERE idUtilisateur = ? AND idRecette = ?");
+            $O_requetteAjouterAvis->execute(array($I_idUtilisateur, $I_idRecette));
+            $O_notatation = $O_requetteAjouterAvis->fetch(PDO::FETCH_OBJ)->notation;
+
+            return $O_notatation;
+        } catch (PDOException $e){
+            return $e->getMessage();
+        }
+    }
+
     public static function moyenneAvisRecette($I_idRecette){
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try{
