@@ -22,7 +22,7 @@ class ConnexionUtilisateurBDD {
                 //On enregistre les identifiants de la session
                 $_SESSION['idPersonneConnectee'] = $O_lignes[0]; //Assigne l'email du résultat de la table à la session emailPersonneConnectee
                 $_SESSION['nomPersonneConnectee'] = $O_lignes[1];//Assigne le nom du résultat de la table à la session nomPersonneConnectee
-                return $O_lignes[0] . ", vous êtes connecté!";
+                return $O_lignes[1] . ", vous êtes connecté!";
             }
             $S_messageUtilisateurDeco = "";
             //On n'enregistre/supprime aucun identifiant de session

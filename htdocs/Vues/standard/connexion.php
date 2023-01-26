@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="content">
     <div id="connexion">
         <h1> CONNEXION </h1>
@@ -8,7 +9,7 @@
                 <input class="champs_form" name='motDePasse' type='password' placeholder="Mot de passe" required oninvalid="this.setCustomValidity('Renseigner un mot de passe')" oninput="this.setCustomValidity('')">
             </div>
             <div class="valide_form">
-                <input id="boutonChangeUtilisateur" class="bouton lien" type="text" value="Admin" name="Utilisateur" readOnly="readOnly" >
+                <input id="boutonChangeUtilisateur" class="bouton lien" type="text" value="Go Admin" name="Utilisateur" readOnly="readOnly" >
                 <input type="submit" class="bouton lien" value="Se Connecter">
             </div>
         </form>
