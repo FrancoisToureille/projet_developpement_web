@@ -41,14 +41,15 @@ final class ControleurRecette
                     $_A_recettesBD[0]['libelle'],
                     $_A_recettesBD[0]['categories'],
                     $_A_recettesBD[0]['ingredients'],
-                    $_A_recettesBD[0]['quantites']);
+                    $_A_recettesBD[0]['quantites'],
+                    $_A_recettesBD[0]['image']);
 
-                Vue::montrer('recette/voir', array('recette' => $_SESSION['idPersonneConnectee']));
                 $B_estConnecté =!empty($_SESSION['idPersonneConnectee']); // on verifie si l'uttilisateur est connecté
                 $I_notation = Recette::avisUtilisateur($_SESSION['idPersonneConnectee'],$A_parametres[0]); //recupere la notation de l'uttilisateur pour cette recette
 
                 $I_moyenneNotation = Recette::moyenneAvisRecette($A_parametres[0]); // recupere la moyenne de notation pour cette recette
 
+                Vue::montrer('recette/grosBlocDebut');
 
                 Vue::montrer('recette/blocDebut',array('recettes' => "Recettes"));
                 Vue::montrer('recette/voirTitreRecette', array('titreRecette' =>  $O_recette->donneNomRecette()));
@@ -67,66 +68,29 @@ final class ControleurRecette
                     Vue::montrer('recette/moyenneAvis', array('moyenneNotation' => $I_moyenneNotation));
                 }
 
+
+
                 Vue::montrer('recette/voir', array('recette' => "ingredients:"));
                 Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneIngredients()));
+
                 Vue::montrer('recette/voir', array('recette' => "quantites:"));
                 Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneQuantites()));
+
                 Vue::montrer('recette/voir', array('recette' => "instructions:"));
                 Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneInstructions()));
+
                 Vue::montrer('recette/voir', array('recette' => "categories:"));
                 Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneNomCategories()));
+
                 Vue::montrer('recette/voir', array('recette' => "\n *******"));
                 Vue::montrer('recette/blocFin',array('fin' => ""));
+
+                //On affiche l'image lié à la recette
+                Vue::montrer('recette/image', array('lien' => $O_recette->donneImage()));
+
+                Vue::montrer('recette/grosBlocFin', array('fin' => " "));
             }
         }
-
-    }
-
-    public function afficheRecettesAleatoiresAction()
-    {
-        $A_recettesBD = Recette::donneRecettesAleatoires();
-        $A_recettes = array();
-        foreach (range(0, sizeof($A_recettesBD) - 1) as $I_indexRecette) {
-            $A_recettes[$I_indexRecette] = new Recette($A_recettesBD[$I_indexRecette]->nomRecette,
-            $A_recettesBD[$I_indexRecette]->libelle,
-            $A_recettesBD[$I_indexRecette]->categories,
-            $A_recettesBD[$I_indexRecette]->ingredients,
-            $A_recettesBD[$I_indexRecette]->quantites);
-        }
-        
-        Vue::montrer('recette/grosBloc',array('grosBloc' => ""));
-
-        Vue::montrer('recette/blocRecetteUn',array('recette1' => $A_recettes[0]->donneNomRecette()));
-        Vue::montrer('recette/voir', array('recette' => "ingredients:"));
-        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[0]->donneIngredients()));
-        Vue::montrer('recette/voir', array('recette' => "quantites:"));
-        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[0]->donneQuantites()));
-        Vue::montrer('recette/voir', array('recette' => "instructions:"));
-        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[0]->donneInstructions()));
-        Vue::montrer('recette/voir', array('recette' => "categories:"));
-        Vue::montrer('recette/blocFin', array('fin' =>  $A_recettes[0]->donneNomCategories()));
-
-        Vue::montrer('recette/blocRecetteDeux',array('recette2' => $A_recettes[1]->donneNomRecette()));
-        Vue::montrer('recette/voir', array('recette' => "ingredients:"));
-        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[1]->donneIngredients()));
-        Vue::montrer('recette/voir', array('recette' => "quantites:"));
-        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[1]->donneQuantites()));
-        Vue::montrer('recette/voir', array('recette' => "instructions:"));
-        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[1]->donneInstructions()));
-        Vue::montrer('recette/voir', array('recette' => "categories:"));
-        Vue::montrer('recette/blocFin', array('fin' =>  $A_recettes[1]->donneNomCategories()));
-
-        Vue::montrer('recette/blocRecetteTrois',array('recette3' => $A_recettes[2]->donneNomRecette()));
-        Vue::montrer('recette/voir', array('recette' => "ingredients:"));
-        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[2]->donneIngredients()));
-        Vue::montrer('recette/voir', array('recette' => "quantites:"));
-        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[2]->donneQuantites()));
-        Vue::montrer('recette/voir', array('recette' => "instructions:"));
-        Vue::montrer('recette/voir', array('recette' =>  $A_recettes[2]->donneInstructions()));
-        Vue::montrer('recette/voir', array('recette' => "categories:"));
-        Vue::montrer('recette/blocFin', array('fin' =>  $A_recettes[2]->donneNomCategories()));
-
-        Vue::montrer('recette/grosBlocFin', array('fin' => " "));
 
     }
 

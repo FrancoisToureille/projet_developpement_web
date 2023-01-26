@@ -72,7 +72,7 @@ final class Recette
     public static function donneRecette($S_idRecetteDemandee) {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
-            $O_statement = $O_pdo->prepare("SELECT r.idRecette, r.nomRecette, r.libelle, cat.categories, ing.ingredients, ing.quantites
+            $O_statement = $O_pdo->prepare("SELECT r.idRecette, r.nomRecette, r.libelle, r.image, cat.categories, ing.ingredients, ing.quantites
             FROM recette r
             
             INNER JOIN
