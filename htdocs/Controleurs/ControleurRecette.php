@@ -41,7 +41,8 @@ final class ControleurRecette
                     $_A_recettesBD[0]['libelle'],
                     $_A_recettesBD[0]['categories'],
                     $_A_recettesBD[0]['ingredients'],
-                    $_A_recettesBD[0]['quantites']);
+                    $_A_recettesBD[0]['quantites'],
+                    $_A_recettesBD[0]['image']);
 
                 Vue::montrer('recette/voir', array('recette' => $_SESSION['idPersonneConnectee']));
                 $B_estConnecté =!empty($_SESSION['idPersonneConnectee']); // on verifie si l'uttilisateur est connecté
@@ -67,14 +68,21 @@ final class ControleurRecette
                     Vue::montrer('recette/moyenneAvis', array('moyenneNotation' => $I_moyenneNotation));
                 }
 
+                //On affiche l'image lié à la recette
+                Vue::montrer('recette/image', array('lien' => $O_recette->donneImage()));
+
                 Vue::montrer('recette/voir', array('recette' => "ingredients:"));
                 Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneIngredients()));
+
                 Vue::montrer('recette/voir', array('recette' => "quantites:"));
                 Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneQuantites()));
+
                 Vue::montrer('recette/voir', array('recette' => "instructions:"));
                 Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneInstructions()));
+
                 Vue::montrer('recette/voir', array('recette' => "categories:"));
                 Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneNomCategories()));
+
                 Vue::montrer('recette/voir', array('recette' => "\n *******"));
                 Vue::montrer('recette/blocFin',array('fin' => ""));
             }

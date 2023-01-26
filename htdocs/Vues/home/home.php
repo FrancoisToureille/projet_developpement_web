@@ -28,7 +28,7 @@ echo
                     } else {
                         echo"<div class='moyenneAvis'>
                              <p>La moyenne des avis est de " . $A_vue['moyenneNotation1'] . "</p>
-                             <input type='range' id='notation' name='notation' min='0' max='5' value='" . $A_vue['moyenneNotation'] . "' disabled>
+                             <input type='range' id='notation' name='notation' min='0' max='5' value='" . $A_vue['moyenneNotation1'] . "' disabled>
                              </div>";
                     }
 
@@ -52,7 +52,7 @@ echo               "<p class='ingredientsTitre'> ingredients: </p>
                     } else {
                         echo"<div class='moyenneAvis'>
                              <p>La moyenne des avis est de " . $A_vue['moyenneNotation2'] . "</p>
-                             <input type='range' id='notation' name='notation' min='0' max='5' value='" . $A_vue['moyenneNotation'] . "' disabled>
+                             <input type='range' id='notation' name='notation' min='0' max='5' value='" . $A_vue['moyenneNotation2'] . "' disabled>
                              </div>";
                     }
 
@@ -76,7 +76,7 @@ echo               "<p class='ingredientsTitre'> ingredients: </p>
                     } else {
                         echo"<div class='moyenneAvis'>
                              <p>La moyenne des avis est de " . $A_vue['moyenneNotation3'] . "</p>
-                             <input type='range' id='notation' name='notation' min='0' max='5' value='" . $A_vue['moyenneNotation'] . "' disabled>
+                             <input type='range' id='notation' name='notation' min='0' max='5' value='" . $A_vue['moyenneNotation3'] . "' disabled>
                              </div>";
                     }
 
