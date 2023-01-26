@@ -817,10 +817,35 @@ footer{
         text-align:center;
         display: none;
     }
+
+    #afficheResult{
+        margin: 50%;
+        font-size: 15vw;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 17vw;
+    }
+
 }
+
 @media all and (min-width:1200px) and (max-width: 1600px) {
+
     .recette{
         width: 30vw;
+    }
+
+    #afficheResult{
+        margin: 10%;
+        font-size: 2.5vw;
+        margin-left: 35%;
+        margin-right: 35%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 3.2vw;
     }
 }
 
@@ -830,6 +855,17 @@ footer{
     }
     #recetteEtCategorie{
         flex-direction: column;
+    }
+
+    #afficheResult{
+        margin: 20%;
+        font-size: 4vw;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 5vw;
     }
 }
 
@@ -845,6 +881,17 @@ footer{
 
     #blocRecettes{
         flex-direction: column;
+    }
+
+    #afficheResult{
+        margin: 50%;
+        font-size: 7vw;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 8vw;
     }
 }
 
@@ -900,5 +947,16 @@ footer{
     #dots-con{
         text-align:center;
         display: none;
+    }
+
+    #afficheResult{
+        margin: 55%;
+        font-size: 9vw;
+        margin-left: 7%;
+        margin-right: 7%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 10vw;
     }
 }
