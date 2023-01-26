@@ -32,6 +32,8 @@ final class ControleurRecette
 
     public function afficheRecetteAction($A_parametres)
     {
+        session_start(); //demarre la session
+
         if (isset($A_parametres[0])){
             $_A_recettesBD = Recette::donneRecette($A_parametres[0]);
             if (!empty($_A_recettesBD)){
@@ -41,8 +43,30 @@ final class ControleurRecette
                     $_A_recettesBD[0]['ingredients'],
                     $_A_recettesBD[0]['quantites']);
 
+                Vue::montrer('recette/voir', array('recette' => $_SESSION['idPersonneConnectee']));
+                $B_estConnecté =!empty($_SESSION['idPersonneConnectee']); // on verifie si l'uttilisateur est connecté
+                $I_notation = Recette::avisUtilisateur($_SESSION['idPersonneConnectee'],$A_parametres[0]); //recupere la notation de l'uttilisateur pour cette recette
+
+                $I_moyenneNotation = Recette::moyenneAvisRecette($A_parametres[0]); // recupere la moyenne de notation pour cette recette
+
+
                 Vue::montrer('recette/blocDebut',array('recettes' => "Recettes"));
                 Vue::montrer('recette/voirTitreRecette', array('titreRecette' =>  $O_recette->donneNomRecette()));
+
+                if ($B_estConnecté){
+                    if ($I_notation == null){
+                        Vue::montrer('recette/ajouterAvis', array('idRecette' => $A_parametres[0]));
+                    }
+                    else{
+                        Vue::montrer('recette/montrerAvis', array('notation' => $I_notation));
+                    }
+                }
+                if ($I_moyenneNotation == null){
+                    Vue::montrer('recette/moyenneAvisNule');
+                } else {
+                    Vue::montrer('recette/moyenneAvis', array('moyenneNotation' => $I_moyenneNotation));
+                }
+
                 Vue::montrer('recette/voir', array('recette' => "ingredients:"));
                 Vue::montrer('recette/voir', array('recette' =>  $O_recette->donneIngredients()));
                 Vue::montrer('recette/voir', array('recette' => "quantites:"));
@@ -113,6 +137,20 @@ final class ControleurRecette
             Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomRecette']));
             Vue::montrer('recette/voir', array('recette' => $_A_recetteCategorie[$_I_index]['nomCategorie']));
         }
+    }
+
+    public function ajouterAvisAction($A_parametres){
+        session_start(); //demarre la session
+
+        if(!empty($_SESSION['idPersonneConnectee']) && !empty($A_parametres) && sizeof($A_parametres) == 1 && !empty($_POST['notation'])){
+            //On verifie s'il n'y a pas déja un avis
+            $I_notation = Recette::avisUtilisateur($_SESSION['idPersonneConnectee'],$A_parametres[0]);
+            if ($I_notation == null){
+                Recette::ajouterAvis($_SESSION['idPersonneConnectee'], $A_parametres[0], $_POST['notation']);
+            }
+        }
+        //On retourne sur la recette
+        header( 'Location: /recette/afficheRecette/' . $A_parametres[0]);
     }
 
 }

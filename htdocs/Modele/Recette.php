@@ -52,6 +52,19 @@ final class Recette
         return $this->S_image;
     }
 
+    public static function donneToutesLesRecettesNomId() {
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try {
+            $O_statement = $O_pdo->query("SELECT nomRecette, idRecette FROM recette");
+            $O_statement->setFetchMode(PDO::FETCH_OBJ);
+            if ($O_statement->columnCount()) {
+                return $O_statement->fetchAll();
+            }
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
 
     /**méthodes liées à la base de données */
 
@@ -80,21 +93,6 @@ final class Recette
             WHERE r.idRecette = ?;");
             $O_statement->execute(array($S_idRecetteDemandee));
             $O_statement->setFetchMode(PDO::FETCH_ASSOC);
-            if ($O_statement->columnCount()) {
-                return $O_statement->fetchAll();
-            }
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-    
-    /** méthode récupérant les noms et les id des recettes*/
-    public static function donneToutesLesRecettesNomId() {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->query("SELECT nomRecette, idRecette FROM recette");
-            $O_statement->setFetchMode(PDO::FETCH_OBJ);
             if ($O_statement->columnCount()) {
                 return $O_statement->fetchAll();
             }
@@ -266,6 +264,20 @@ final class Recette
             //On prepare puis execute la requette d'insertion
             $O_requetteAjouterAvis = $O_pdo->prepare("INSERT INTO `avis` (`idUtilisateur`, `idRecette`, `notation`) VALUES (?, ?, ?)");
             $O_requetteAjouterAvis->execute(array($I_idUtilisateur, $I_idRecette, $I_notation));
+        } catch (PDOException $e){
+            return $e->getMessage();
+        }
+    }
+
+    public static function avisUtilisateur($I_idUtilisateur, $I_idRecette){
+        $O_pdo = ConnexionBDD::getInstance()->getPdo();
+        try{
+            //On prepare puis execute la requette
+            $O_requetteAjouterAvis = $O_pdo->prepare("SELECT notation FROM `avis` WHERE idUtilisateur = ? AND idRecette = ?");
+            $O_requetteAjouterAvis->execute(array($I_idUtilisateur, $I_idRecette));
+            $O_notatation = $O_requetteAjouterAvis->fetch(PDO::FETCH_OBJ)->notation;
+
+            return $O_notatation;
         } catch (PDOException $e){
             return $e->getMessage();
         }
