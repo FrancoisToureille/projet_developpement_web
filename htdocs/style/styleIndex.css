@@ -694,10 +694,10 @@ footer{
   color: #ffffff;
 }
 
-.recettes {
+.recettes{
     margin: 2vw;
     background-color: rgba(246, 239, 222, 0.9);
-    width: 40vw;
+    width: 60vw;
 }
 
 .titreRecettes{
@@ -735,6 +735,13 @@ footer{
 #img_recette{
     display: flex;
     align-self: center;
+    background-color: rgba(246, 239, 222, 0.9);
+    margin-bottom: 1vh;
+}
+
+.recetteText{
+    margin: 10px;
+    word-wrap: break-word;
 }
 
 .grosBloc {
@@ -786,11 +793,7 @@ footer{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-}
-
-#img_recette{
-    background-color: rgba(246, 239, 222, 0.9);
-
+    align-items: center;
 }
 
 @media all and (min-width:0px) and (max-width: 450px) {
@@ -833,8 +836,8 @@ footer{
 
 @media all and (min-width:1200px) and (max-width: 1600px) {
 
-    .recette{
-        width: 30vw;
+    .recettes{
+        width: 50vw;
     }
 
     #afficheResult{
@@ -850,8 +853,8 @@ footer{
 }
 
 @media all and (min-width:800px) and (max-width: 1200px) {
-    .recette{
-        width: 40vw;
+    .recettes{
+        width: 45vw;
     }
     #recetteEtCategorie{
         flex-direction: column;
@@ -871,8 +874,8 @@ footer{
 
 @media all and (max-width: 800px) {
 
-    .recette{
-        width: 60vw;
+    .recettes{
+        width: 80vw;
     }
 
     #recetteEtCategorie{
@@ -880,6 +883,10 @@ footer{
     }
 
     #blocRecettes{
+        flex-direction: column;
+    }
+
+    .blocRecette{
         flex-direction: column;
     }
 
