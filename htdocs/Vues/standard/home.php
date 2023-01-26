@@ -22,33 +22,6 @@
 
 <div id="home">
     <div class="recipesAndCategories">
-        <div class="randomRecipe">
-            <div class="recipeTitle"><a href="index.php">Recette cannelé (4. personnes)</a></div>
-            <div class="recipeView">
-                <div id="slider">
-                    <span class="controls" onclick="prevSlide(-1)" id="left-arrow">
-                        <img alt="fleche" class="arrow left_arrow" src="/image/fleche.png">
-                    </span>
-                    <span class="controls" id="right-arrow" onclick="nextSlide(1)">
-                        <img alt="fleche" class="arrow right_arrow" src="/image/fleche.png">
-                    </span>
-                    <div class="slide">
-                        <img alt="random_recette" class="bouffe" src="/image/crepe.jpg">
-                    </div>
-                    <div class="slide">
-                        <img alt="random_recette" class="bouffe" src="/image/cannele.jfif">
-                    </div>
-                    <div class="slide">
-                        <img alt="random_recette" class="bouffe" src="/image/tropezienne.jpg">
-                    </div>
-                    <div id="dots-con">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="categorie">
             <ul>
             <li><p>Gâteaux</p></li>
