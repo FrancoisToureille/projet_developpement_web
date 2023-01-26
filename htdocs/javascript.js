@@ -47,6 +47,7 @@ function recetteSuivante(){
 }
 
 function goToConnexion(){
+    document.getElementById('afficheResult').style.display = 'none';
     document.getElementById('barreCategorie').style.display = 'none';
     document.getElementById('recetteEtCategorie').style.display = 'none';
     document.getElementById('connexion_txt').style.display = 'none';
@@ -58,6 +59,7 @@ function goToConnexion(){
 }
 
 function goToAccueil(){
+    document.getElementById('afficheResult').style.display = 'flex';
     document.getElementById('barreCategorie').style.display = 'flex';
     document.getElementById('recetteEtCategorie').style.display = 'flex';
     document.getElementById('connexion_txt').style.display = 'flex';

@@ -754,7 +754,24 @@ footer{
 }
 
 #afficheResult{
-    background-color: #1DA1F2;
+    background-color: rgba(246, 239, 222, 0.9);
+    margin: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: fit-content;
+    font-size: 1.5vw;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.resultRecherche:hover{
+    font-size: 1.6vw;
+}
+
+.resultRecherche{
+    padding: 0.9vw;
 }
 
 @media all and (min-width:0px) and (max-width: 450px) {
