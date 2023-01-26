@@ -20,7 +20,7 @@ echo "<div id='insertion'>
         "</select></br>
         <label for='choix_ingredient'>Selectionnez un ou des ingredients: </label>
         <select class='select_ingredient' name='ingredients[]' multiple id='liste_ingredients' style='width:6em'>" . $S_affichageIngredients .  
-        // <!-- ingredients et ajouter si inexistant -->
+        // ingredients 
         "</select> </br>
         <div id='quantites'>
             <label id='labelQuantite' for='quantite'>Quantites: </label></br>
@@ -33,6 +33,7 @@ echo "<div id='insertion'>
     </form>
 </div>";
 
+//Ecouteur pour créer une zone de texte de quantite par ingredient selectionné
 echo "<script>
     const select_ing = document.querySelector('.select_ingredient');
     select_ing.addEventListener('change', (event) => {
