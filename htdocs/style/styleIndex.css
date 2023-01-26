@@ -684,12 +684,47 @@ footer{
   color: #ffffff;
 }
 
-@media all and (min-width:0px) and (max-width: 660px) {
-    body {
-        display:grid;
-        grid-template-rows: auto 1fr auto; 
-        min-height: 100vh;
+@media all and (min-width:0px) and (max-width: 450px) {
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100vw;
     }
+
+    .bouffe {
+        width: 45vw;
+        height: 45vw;
+    }
+
+    .left_arrow {
+        display: none;
+    }
+
+    .right_arrow {
+        display: none;
+    }
+
+    #slider {
+        align-items: center;
+        width: 80%;
+        margin: 5vw;
+        max-height: 50vw;
+        max-width: 50vw;
+    }
+    
+    #dots-con{
+        text-align:center;
+        display: none;
+    }
+}
+
+@media all and (min-width:450px) and (max-width: 600px) {
+
+    body {
+        display:flex;
+        flex-direction: column;
+        }
 
     .bouton {
         letter-spacing: 0.1em;
@@ -704,17 +739,82 @@ footer{
         margin: 0.8vw;
         padding-right: 1.5vw;
     }
+    
+    .navBarrEtRecherche {
+        display: flex;
+        padding-bottom: 0;
+        flex-direction: column;
+    }
 
-    #connexion_txt{
-       display: none;
+    .bouffe {
+        width: 45vw;
+        height: 45vw;
     }
     
-    #connexion_txt_bis{
-        display: contents;
+    .left_arrow {
+        display: none;
+    }
+
+    .right_arrow {
+        display: none;
+    }
+
+    .content {
+        min-height: 100vh;
+        margin-bottom: -10rem;
+    }
+
+    footer, .push    {
+        height: 10rem;
+    }
+
+    #slider {
+        align-items: center;
+        width: 80%;
+        margin: 5vw;
+        max-height: 50vw;
+        max-width: 50vw;
     }
 
     #dots-con{
         text-align:center;
         display: none;
+    }
+}
+
+@media all and (min-width:600px) and (max-width: 900px) {
+    
+    .content {
+        margin-bottom: -14rem;
+    }
+
+    footer, .push    {
+        height: 14rem;
+    }
+
+    #dots-con{
+        text-align:center;
+        display: none;
+    }
+
+    #slider {
+        align-items: center;
+        width: 80%;
+        margin: 5vw;
+        max-height: 50vw;
+        max-width: 50vw;
+    }
+    
+    .left_arrow {
+        display: none;
+    }
+
+    .right_arrow {
+        display: none;
+    }
+
+    .bouffe {
+        width: 45vw;
+        height: 45vw;
     }
 }
