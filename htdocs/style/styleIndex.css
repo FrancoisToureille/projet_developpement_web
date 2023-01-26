@@ -717,6 +717,7 @@ footer{
 .image{
     width: 300px;
     height: 250px;
+    padding: 1vw;
 }
 
 #blocRecettes{
@@ -772,6 +773,17 @@ footer{
 
 .resultRecherche{
     padding: 0.9vw;
+}
+
+.blocRecette{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#img_recette{
+    background-color: rgba(246, 239, 222, 0.9);
+
 }
 
 @media all and (min-width:0px) and (max-width: 450px) {
