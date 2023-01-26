@@ -771,7 +771,6 @@ footer{
     justify-content: center;
     margin: 2vw;
     padding: 1.5vw;
-    align-items: left;
     background-color: rgba(246, 239, 222, 0.9);
 }
 
@@ -819,44 +818,6 @@ footer{
 
 #validerCategorie:hover{
     font-size: 21px;
-}
-
-@media all and (min-width:0px) and (max-width: 450px) {
-
-    footer {
-        bottom: 0;
-        width: 100vw;
-    }
-
-    .bouffe {
-        width: 45vw;
-        height: 45vw;
-    }
-
-    #slider {
-        align-items: center;
-        width: 80%;
-        margin: 5vw;
-        max-height: 50vw;
-        max-width: 50vw;
-    }
-    
-    #dots-con{
-        text-align:center;
-        display: none;
-    }
-
-    #afficheResult{
-        margin: 50%;
-        font-size: 15vw;
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
-    .resultRecherche:hover{
-        font-size: 17vw;
-    }
-
 }
 
 @media all and (min-width:1200px) and (max-width: 1600px) {
@@ -907,6 +868,11 @@ footer{
 
 @media all and (max-width: 800px) {
 
+    .bouton {
+        max-width: none;
+        font-size: 2.6vw;
+    }
+
     .recettes{
         width: 80vw;
     }
@@ -945,25 +911,16 @@ footer{
 
 @media all and (min-width:450px) and (max-width: 600px) {
 
+    .bouton {
+        max-width: none;
+        font-size: 3vw;
+    }
+
     body {
         display:flex;
         flex-direction: column;
         }
 
-    .bouton {
-        letter-spacing: 0.1em;
-        cursor: pointer;
-        line-height: 5vw;
-        max-width: 27vw;
-        text-transform: uppercase;
-        padding-left: 1.5vw;
-        font-family: 'Gilda_display';
-        align-items: center;
-        font-size: 1.3vw;
-        margin: 0.8vw;
-        padding-right: 1.5vw;
-    }
-    
     .navBarrEtRecherche {
         display: flex;
         padding-bottom: 0;
@@ -1007,4 +964,47 @@ footer{
     .resultRecherche:hover{
         font-size: 10vw;
     }
+}
+
+@media all and (max-width: 450px) {
+
+    .bouton {
+        max-width: none;
+        font-size: 4vw;
+    }
+
+    footer {
+        bottom: 0;
+        width: 100vw;
+    }
+
+    .bouffe {
+        width: 45vw;
+        height: 45vw;
+    }
+
+    #slider {
+        align-items: center;
+        width: 80%;
+        margin: 5vw;
+        max-height: 50vw;
+        max-width: 50vw;
+    }
+
+    #dots-con{
+        text-align:center;
+        display: none;
+    }
+
+    #afficheResult{
+        margin: 50%;
+        font-size: 15vw;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .resultRecherche:hover{
+        font-size: 17vw;
+    }
+
 }
