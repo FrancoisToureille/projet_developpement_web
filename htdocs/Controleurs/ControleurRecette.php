@@ -32,6 +32,8 @@ final class ControleurRecette
 
     public function afficheRecetteAction($A_parametres)
     {
+        session_start(); //demarre la session
+
         if (isset($A_parametres[0])){
             $_A_recettesBD = Recette::donneRecette($A_parametres[0]);
             if (!empty($_A_recettesBD)){
@@ -41,10 +43,9 @@ final class ControleurRecette
                     $_A_recettesBD[0]['ingredients'],
                     $_A_recettesBD[0]['quantites']);
 
-                //recuperer id uttilisateur
-                $I_idUtilisateur = 1; // CHANGER
-                $B_estConnecté = true; // CHANGER AVEC LE TEST
-                $I_notation = Recette::avisUtilisateur($I_idUtilisateur,$A_parametres[0]); //recupere la notation de l'uttilisateur pour cette recette
+                Vue::montrer('recette/voir', array('recette' => $_SESSION['idPersonneConnectee']));
+                $B_estConnecté =!empty($_SESSION['idPersonneConnectee']); // on verifie si l'uttilisateur est connecté
+                $I_notation = Recette::avisUtilisateur($_SESSION['idPersonneConnectee'],$A_parametres[0]); //recupere la notation de l'uttilisateur pour cette recette
 
                 $I_moyenneNotation = Recette::moyenneAvisRecette($A_parametres[0]); // recupere la moyenne de notation pour cette recette
 
@@ -139,16 +140,13 @@ final class ControleurRecette
     }
 
     public function ajouterAvisAction($A_parametres){
+        session_start(); //demarre la session
 
-        //verifie si l'utilisateur est connecté et recup son id
-        $I_idUtilisateur = 1;
-
-
-        if(!empty($A_parametres) && sizeof($A_parametres) == 1 && !empty($_POST['notation'])){
+        if(!empty($_SESSION['idPersonneConnectee']) && !empty($A_parametres) && sizeof($A_parametres) == 1 && !empty($_POST['notation'])){
             //On verifie s'il n'y a pas déja un avis
-            $I_notation = Recette::avisUtilisateur($I_idUtilisateur,$A_parametres[0]);
+            $I_notation = Recette::avisUtilisateur($_SESSION['idPersonneConnectee'],$A_parametres[0]);
             if ($I_notation == null){
-                Recette::ajouterAvis($I_idUtilisateur, $A_parametres[0], $_POST['notation']);
+                Recette::ajouterAvis($_SESSION['idPersonneConnectee'], $A_parametres[0], $_POST['notation']);
             }
         }
         //On retourne sur la recette
