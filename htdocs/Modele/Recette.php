@@ -275,9 +275,11 @@ final class Recette
             //On prepare puis execute la requette
             $O_requetteAjouterAvis = $O_pdo->prepare("SELECT notation FROM `avis` WHERE idUtilisateur = ? AND idRecette = ?");
             $O_requetteAjouterAvis->execute(array($I_idUtilisateur, $I_idRecette));
-            $O_notatation = $O_requetteAjouterAvis->fetch(PDO::FETCH_OBJ)->notation;
-
-            return $O_notatation;
+            if ($O_result = $O_requetteAjouterAvis->fetch(PDO::FETCH_OBJ)) {
+                $O_notatation = $O_result->notation;
+                return $O_notatation;
+            }
+            return;
         } catch (PDOException $e){
             return $e->getMessage();
         }
