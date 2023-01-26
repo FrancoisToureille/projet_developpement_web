@@ -803,6 +803,24 @@ footer{
     align-items: center;
 }
 
+.categorieCheckBox{
+    padding: 10px;
+    font-size: 20px;
+}
+
+#validerCategorie{
+    font-family: 'Gilda Display';
+    background-color: #bfb4ad;
+    font-size: 20px;
+    padding: 5px;
+    border: solid;
+    border-width: 1.5px;
+}
+
+#validerCategorie:hover{
+    font-size: 21px;
+}
+
 @media all and (min-width:0px) and (max-width: 450px) {
 
     footer {
