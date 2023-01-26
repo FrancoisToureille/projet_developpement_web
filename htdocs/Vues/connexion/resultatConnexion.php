@@ -6,6 +6,9 @@ echo '<script>
     document.getElementById("accueil_txt").style.display = "flex";
     document.getElementById("img_accueil").style.display = "flex";
     document.getElementById("img_form").style.display = "none";
+    document.getElementById("accueil_txt").onclick = function () {
+        window.location.href = "/home";
+    }
     document.getElementById("boutonChangeUtilisateur").value = "' . $A_vue['statusBouton'] . '";
     document.getElementById("boutonChangeUtilisateur").name = "' . $A_vue['statusBoutonName'] . '";
     document.getElementById("informationConnexion").innerHTML = "' . $A_vue['information'] . '"; 
