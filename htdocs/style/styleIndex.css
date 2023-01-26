@@ -868,6 +868,21 @@ footer{
 
 @media all and (max-width: 800px) {
 
+    #barreAutre{
+        flex-direction: column;
+        margin-left: 10px;
+    }
+
+    #search_input{
+        width: 30vw;
+        height: 7vw;
+    }
+
+    #img_loupe{
+        height: 4.8vh;
+        width: 4.8vh;
+    }
+
     .bouton {
         max-width: none;
         font-size: 2.6vw;
@@ -910,6 +925,16 @@ footer{
 }
 
 @media all and (min-width:450px) and (max-width: 600px) {
+
+    #search_input{
+        width: 35vw;
+        height: 9vw;
+    }
+
+    #img_loupe{
+        height: 5vh;
+        width: 5vh;
+    }
 
     .bouton {
         max-width: none;
@@ -967,6 +992,16 @@ footer{
 }
 
 @media all and (max-width: 450px) {
+
+    #search_input{
+        width: 40vw;
+        height: 11vw;
+    }
+
+    #img_loupe{
+        height: 5.2vh;
+        width: 5.2vh;
+    }
 
     .bouton {
         max-width: none;
