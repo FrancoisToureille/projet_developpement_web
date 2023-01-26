@@ -1,5 +1,6 @@
 <?php
 
+/*classe Recette utilisée dans les controleurs quand on récupère les données de la base*/
 final class Recette
 {
     private $S_nomRecette;
@@ -18,6 +19,8 @@ final class Recette
         $this->S_image = $S_image;
         /* attention pas de symbole dollar sur les attributs après le this.*/
     }
+
+    /*accesseurs*/
 
     public function donneNomRecette()
     {
@@ -39,25 +42,20 @@ final class Recette
         return $this->S_nomCategories;
     }
 
+    public function donneIngredients()
+    {
+        return $this->S_ingredients;
+    }
+
     public function donneImage()
     {
         return $this->S_image;
     }
 
-    public static function donneToutesLesRecettesNomId() {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->query("SELECT nomRecette, idRecette FROM recette");
-            $O_statement->setFetchMode(PDO::FETCH_OBJ);
-            if ($O_statement->columnCount()) {
-                return $O_statement->fetchAll();
-            }
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
 
+    /**méthodes liées à la base de données */
+
+    /**méthode recuperant les informations sur une recette sélectionnée */
     public static function donneRecette($S_idRecetteDemandee) {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
@@ -91,6 +89,7 @@ final class Recette
         }
     }
 
+    /**méthode recuperant les informations sur toutes les recettes existantes */
     public static function donneToutesRecettes() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
@@ -122,6 +121,7 @@ final class Recette
         }
     }
 
+    /**méthode recuperant les informations de trois recettes au hasard */
     public static function donneRecettesAleatoiresImage() {
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try {
@@ -153,11 +153,6 @@ final class Recette
         }
     }
     
-    public function donneIngredients()
-    {
-        return $this->S_ingredients;
-    }
-
     /**
      * Renvoie toutes les recettes (id, nom) d'une catégorie (idCategorie)
      * Toutes categorie fille d'une categorie sont considérées comme telle
@@ -198,41 +193,6 @@ final class Recette
      * @param $S_libelle
      * @return array|false|string|void
      */
-    
-    public static function ajouterRecetteBDD($S_nomRecette, $S_libelle)
-    {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->prepare("
-            INSERT INTO recette (nomRecette, libelle) VALUES (?,?)");
-            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
-            $O_statement->execute(array($S_nomRecette, $S_libelle));
-            if ($O_statement->columnCount()){
-                return $O_statement->fetchAll();
-            }
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public static function donnerIdRecette($S_nomRecette)
-    {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->prepare("
-            SELECT idRecette as idR FROM recette 
-            WHERE nomRecette = ?");
-            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
-            $O_statement->execute(array($S_nomRecette));
-            if ($O_statement->columnCount()){
-                return $O_statement->fetch();
-            }
-        }
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
 
     public static function ajouterRecette($S_nomRecette, $S_libelleRecette, $S_lienImage=NULL, $A_idsCategories, $A_idsQuantiteIngredients, $A_nomsQuantiteNouveauxIngredients=array())
     {
@@ -284,6 +244,7 @@ final class Recette
         }
     }
 
+    /**méthode ajoutant un avis dans la table avis, utilisée lorque l'on donne son avis avec le slider */
     public static function ajouterAvis($I_idUtilisateur, $I_idRecette, $I_notation){
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try{
@@ -295,6 +256,7 @@ final class Recette
         }
     }
 
+    /**méthode renvoyant l'avis moyen pour une recette */
     public static function moyenneAvisRecette($I_idRecette){
         $O_pdo = ConnexionBDD::getInstance()->getPdo();
         try{
@@ -304,24 +266,6 @@ final class Recette
             $I_moyenne = $O_requetteMoyenne->fetch(PDO::FETCH_OBJ)->moyenne;
             return $I_moyenne;
         } catch (PDOException $e){
-            return $e->getMessage();
-        }
-    }
-
-    public static function donnerIdCategorie($S_nomCategorie)
-    {
-        $O_pdo = ConnexionBDD::getInstance()->getPdo();
-        try {
-            $O_statement = $O_pdo->prepare("
-            SELECT idCategorie as idC FROM categorie 
-            WHERE nomCategorie = ?");
-            $O_statement->setFetchMode(PDO::FETCH_ASSOC);
-            $O_statement->execute(array($S_nomCategorie));
-            if ($O_statement->columnCount()){
-                return $O_statement->fetch();
-            }
-        }
-        catch (PDOException $e) {
             return $e->getMessage();
         }
     }
