@@ -115,8 +115,12 @@ header{
     display: flex;
     flex-direction: row;
     padding: 1.25vw;
+    flex-wrap: wrap;
 }
 
+.categorieCheckBox{
+    flex-wrap: wrap;
+}
 
 .sticky {
     position: fixed;
@@ -368,6 +372,10 @@ a{
 
 #menu ul li:hover ul {
     display:block;
+}
+
+li form {
+    flex-wrap: wrap;
 }
 
 /* CSS Page Inscription */
@@ -689,7 +697,7 @@ footer{
 .recettes {
     margin: 2vw;
     background-color: rgba(246, 239, 222, 0.9);
-    width: 400px;
+    width: 40vw;
 }
 
 .titreRecettes{
@@ -731,7 +739,6 @@ footer{
 
 .grosBloc {
     margin: 2vw;
-    width: 400px;;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -789,7 +796,6 @@ footer{
 @media all and (min-width:0px) and (max-width: 450px) {
 
     footer {
-        position: fixed;
         bottom: 0;
         width: 100vw;
     }
@@ -797,14 +803,6 @@ footer{
     .bouffe {
         width: 45vw;
         height: 45vw;
-    }
-
-    .left_arrow {
-        display: none;
-    }
-
-    .right_arrow {
-        display: none;
     }
 
     #slider {
@@ -820,7 +818,35 @@ footer{
         display: none;
     }
 }
+@media all and (min-width:1200px) and (max-width: 1600px) {
+    .recette{
+        width: 30vw;
+    }
+}
 
+@media all and (min-width:800px) and (max-width: 1200px) {
+    .recette{
+        width: 40vw;
+    }
+    #recetteEtCategorie{
+        flex-direction: column;
+    }
+}
+
+@media all and (max-width: 800px) {
+
+    .recette{
+        width: 60vw;
+    }
+
+    #recetteEtCategorie{
+        flex-direction: column;
+    }
+
+    #blocRecettes{
+        flex-direction: column;
+    }
+}
 
 @media all and (min-width:450px) and (max-width: 600px) {
 
@@ -852,14 +878,6 @@ footer{
     .bouffe {
         width: 45vw;
         height: 45vw;
-    }
-    
-    .left_arrow {
-        display: none;
-    }
-
-    .right_arrow {
-        display: none;
     }
 
     .content {
