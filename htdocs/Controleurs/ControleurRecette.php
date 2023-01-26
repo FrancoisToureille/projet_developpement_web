@@ -44,7 +44,9 @@ final class ControleurRecette
                 //recuperer id uttilisateur
                 $I_idUtilisateur = 1; // CHANGER
                 $B_estConnecté = true; // CHANGER AVEC LE TEST
-                $I_notation = Recette::avisUtilisateur($I_idUtilisateur,$A_parametres[0]);
+                $I_notation = Recette::avisUtilisateur($I_idUtilisateur,$A_parametres[0]); //recupere la notation de l'uttilisateur pour cette recette
+
+                $I_moyenneNotation = Recette::moyenneAvisRecette($A_parametres[0]); // recupere la moyenne de notation pour cette recette
 
 
                 Vue::montrer('recette/blocDebut',array('recettes' => "Recettes"));
@@ -57,6 +59,11 @@ final class ControleurRecette
                     else{
                         Vue::montrer('recette/montrerAvis', array('notation' => $I_notation));
                     }
+                }
+                if ($I_moyenneNotation == null){
+                    Vue::montrer('recette/moyenneAvisNule');
+                } else {
+                    Vue::montrer('recette/moyenneAvis', array('moyenneNotation' => $I_moyenneNotation));
                 }
 
                 Vue::montrer('recette/voir', array('recette' => "ingredients:"));
