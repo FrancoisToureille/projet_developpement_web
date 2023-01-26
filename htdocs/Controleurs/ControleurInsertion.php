@@ -12,7 +12,7 @@ final class ControleurInsertion {
         $S_libelle = $_POST['libelle'];
         $S_lienImage = $_POST['lienImage'];
         
-        $A_quantite = $_POST['quantites']; //A changer pour mettre une quantite par ingredient
+        $A_quantite = $_POST['quantites'];
 
         $A_ingredients = $_POST['ingredients'];
         $A_categories = $_POST['categories'];
