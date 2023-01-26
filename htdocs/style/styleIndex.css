@@ -753,6 +753,10 @@ footer{
     background-color: rgba(246, 239, 222, 0.9);
 }
 
+#afficheResult{
+    background-color: #1DA1F2;
+}
+
 @media all and (min-width:0px) and (max-width: 450px) {
 
     footer {
