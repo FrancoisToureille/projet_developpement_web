@@ -18,7 +18,7 @@ echo
         <div id ='blocRecettes'>
             <div class = 'grosBloc'>
                 <img alt='fleche' class='arrow left_arrow' src='/image/fleche.png' onclick='recettePrecedente()'> 
-                <div class='recettes' id = 'recette1'>
+                <div class='recettesAccueil' id = 'recette1'>
                     <p class= 'titreRecette'>" . $A_vue['recette1'] . "</p> ";
 
                     if ($A_vue['moyenneNotation1'] == null){
@@ -42,7 +42,7 @@ echo               "<p class='ingredientsTitre'> ingredients: </p>
                     <p class='categories'>" . $A_vue['categories1']  . "</p>
                 </div>
 
-                <div class='recettes' id = 'recette2'>
+                <div class='recettesAccueil' id = 'recette2'>
                     <p class= 'titreRecette'>" . $A_vue['recette2'] . "</p>";
 
                     if ($A_vue['moyenneNotation2'] == null){
@@ -66,7 +66,7 @@ echo               "<p class='ingredientsTitre'> ingredients: </p>
                     <p class='categories'>" . $A_vue['categories2']  . "</p>
                 </div>
 
-                <div class='recettes' id = 'recette3'>
+                <div class='recettesAccueil' id = 'recette3'>
                     <p class='titreRecette'>" . $A_vue['recette3']  . "</p>";
 
                     if ($A_vue['moyenneNotation3'] == null){

@@ -700,6 +700,12 @@ footer{
     width: 60vw;
 }
 
+.recettesAccueil{
+    margin: 2vw;
+    background-color: rgba(246, 239, 222, 0.9);
+    width: 40vw;
+}
+
 .titreRecettes{
     font-size: larger;
     padding: 10px;
@@ -757,6 +763,7 @@ footer{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
 }
 
 .menuCategorie{
@@ -839,6 +846,9 @@ footer{
     .recettes{
         width: 50vw;
     }
+    .recettesAccueil{
+        width: 30vw;
+    }
 
     #afficheResult{
         margin: 10%;
@@ -856,6 +866,11 @@ footer{
     .recettes{
         width: 45vw;
     }
+
+    .recettesAccueil{
+        width: 40vw;
+    }
+
     #recetteEtCategorie{
         flex-direction: column;
     }
@@ -878,16 +893,24 @@ footer{
         width: 80vw;
     }
 
+    .recettesAccueil{
+        width: 75vw;
+    }
+
     #recetteEtCategorie{
         flex-direction: column;
     }
 
     #blocRecettes{
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
 
     .blocRecette{
-        flex-direction: column;
+        flex-direction: column-reverse;
+    }
+
+    #img_recette{
+        margin-top: 1vh;
     }
 
     #afficheResult{
