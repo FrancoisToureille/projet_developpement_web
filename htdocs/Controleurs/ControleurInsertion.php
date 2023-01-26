@@ -12,7 +12,7 @@ final class ControleurInsertion {
         $S_libelle = $_POST['libelle'];
         $S_lienImage = $_POST['lienImage'];
         
-        $I_quantite = $_POST['quantite_ingredient']; //A changer pour mettre une quantite par ingredient
+        $A_quantite = $_POST['quantites']; //A changer pour mettre une quantite par ingredient
 
         $A_ingredients = $_POST['ingredients'];
         $A_categories = $_POST['categories'];
@@ -20,7 +20,7 @@ final class ControleurInsertion {
         $A_idIngredients = array();
 
         foreach ($A_ingredients as $key => $idIngredient) { //Construction du tableau pour la fonction d'insertion
-            $A_idIngredients[$idIngredient] = $I_quantite;
+            $A_idIngredients[$idIngredient] = $A_quantite[$key];
         }
 
         Recette::ajouterRecette($S_nomRecette, $S_libelle, $S_lienImage, $A_categories, $A_idIngredients);

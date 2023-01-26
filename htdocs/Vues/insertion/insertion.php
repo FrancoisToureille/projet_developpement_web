@@ -19,15 +19,34 @@ echo "<div id='insertion'>
         <select multiple name='categories[]' id='liste_categories'>" . $S_affichageCategories .  
         "</select></br>
         <label for='choix_ingredient'>Selectionnez un ou des ingredients: </label>
-        <select name='ingredients[]' multiple id='liste_ingredients' style='width:6em'>" . $S_affichageIngredients .  
+        <select class='select_ingredient' name='ingredients[]' multiple id='liste_ingredients' style='width:6em'>" . $S_affichageIngredients .  
         // <!-- ingredients et ajouter si inexistant -->
-        "</select>
-        <label for='quantite'>Quantite: </label>
-        <input type='text' name='quantite_ingredient'></br>
-        <label for='libelle'>Instructions: </label>
+        "</select> </br>
+        <div id='quantites'>
+            <label id='labelQuantite' for='quantite'>Quantites: </label></br>
+        </div>
+        <label id='labelLibelle' for='libelle'>Instructions: </label>
         <input type='text' name='libelle'></br>
         <label for='lienImage'>Lien de l'image de la recette (facultatif): </label>
         <input type='text' name='lienImage'></br>
         <input type='submit' value='Enregistrer'>
     </form>
 </div>";
+
+echo "<script>
+    const select_ing = document.querySelector('.select_ingredient');
+    select_ing.addEventListener('change', (event) => {
+        let nouveauLabel = document.createElement('label');
+        nouveauLabel.innerHTML = 'Quantite ' + event.target[(event.target.value-1)].innerHTML;
+
+        let idVerif = 'id' + event.target.value;
+        if (!document.getElementById('quantites').contains(document.getElementById(idVerif))) {
+            console.log('oui');
+            let nouvelleZone = document.createElement('input');
+            nouvelleZone.id = 'id' + event.target.value;
+            nouvelleZone.name = 'quantites[]';
+            document.getElementById('quantites').appendChild(nouveauLabel);
+            document.getElementById('quantites').appendChild(nouvelleZone);
+        }
+    });
+</script>";
