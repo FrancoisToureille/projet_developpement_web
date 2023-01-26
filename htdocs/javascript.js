@@ -47,27 +47,23 @@ function recetteSuivante(){
 }
 
 function goToConnexion(){
-    document.getElementById('afficheResult').style.display = 'none';
-    document.getElementById('barreCategorie').style.display = 'none';
     document.getElementById('recetteEtCategorie').style.display = 'none';
     document.getElementById('connexion_txt').style.display = 'none';
+    document.getElementById('img_form').style.display = 'none';
+    document.getElementById('inscription').style.display = 'none';
     document.getElementById('connexion').style.display = 'flex';
     document.getElementById('accueil_txt').style.display = 'flex';
     document.getElementById('img_accueil').style.display = 'flex';
-    document.getElementById('img_form').style.display = 'none';
-    document.getElementById('inscription').style.display = 'none';
 }
 
 function goToAccueil(){
-    document.getElementById('afficheResult').style.display = 'flex';
-    document.getElementById('barreCategorie').style.display = 'flex';
     document.getElementById('recetteEtCategorie').style.display = 'flex';
     document.getElementById('connexion_txt').style.display = 'flex';
+    document.getElementById('img_form').style.display = 'flex';
     document.getElementById('connexion').style.display = 'none';
     document.getElementById('accueil_txt').style.display = 'none';
     document.getElementById('img_accueil').style.display = 'none';
     document.getElementById('inscription').style.display = 'none';
-    document.getElementById('img_form').style.display = 'flex';
 }
 
 function goToInscription(){
