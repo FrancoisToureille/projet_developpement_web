@@ -23,7 +23,6 @@ class InscriptionUtilisateurBDD {
                     if ($S_motDePasse === $S_motDePasseVerification) {
                         //On vérifie que les 2 mots de passe sont les mêmes
                         try {
-                            echo "Je vais m'inscrire";
                             //On crée un nouvel utilisateur dans la BDD
                             $S_motDePasseHasher = sha1($S_motDePasse);
                             $S_requete = $O_pdo->query("INSERT INTO Utilisateur(nom,email,motDePasse) VALUES('$S_nomUtilisateur','$S_email','$S_motDePasseHasher')");

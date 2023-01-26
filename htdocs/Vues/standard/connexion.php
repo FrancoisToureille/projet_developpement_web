@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div id="content">
     <div id="connexion">
         <h1> CONNEXION </h1>
