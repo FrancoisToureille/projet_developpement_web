@@ -19,16 +19,15 @@ echo
             <div id='connexion_txt'><button class='bouton lien' onclick='goToConnexion()'><span>Connexion - Inscription</span></button></div>
             <div id='accueil_txt'><button class='bouton lien' onclick='goToAccueil()'><span>Accueil</span></button></div>
         </div>
-        <div class='search'>
-            <form id='search_form' action='/Recherche/afficheResult' method='POST'>
-                <input id='search_input' type='text' name='search_input'>
-                <input type='image' id='img_loupe' alt='img_loupe' src='/image/loupe.png'>
-            </form>
+        <form id='search_form' action='/Recherche/afficheResult' method='POST'>
+            <div class='search'>
+                
+                    <input id='search_input' type='text' name='search_input'>
+                    <input type='image' id='img_loupe' alt='img_loupe' src='/image/loupe.png'>
+            </div>
         </div>
-    </div>
-    <div id='barreCategorie'>
-        <form action='/Recherche/afficheResult' method='POST'>"
-            . $S_affichageCheckBox .
-        "</form>
-    </div>
+        <div id='barreCategorie'>"
+                . $S_affichageCheckBox .
+        "</div>
+    </form>
 </div>";
