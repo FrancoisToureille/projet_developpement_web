@@ -16,17 +16,8 @@
         <?php // on met cela ici pour que nos vues déclenchées par le controleur s'écrivent ici//
         echo $A_vue['body']; ?>
 
-        <?php Vue::montrer('standard/home');?>
         <?php Vue::montrer('standard/inscription');?>
         <?php Vue::montrer('standard/connexion'); ?>
         <?php Vue::montrer('standard/pied'); ?>
-
-        <?php /*php Vue::montrer('standard/home'); ?>
-        <?php Vue::montrer('standard/inscription'); ?>
-        <?php Vue::montrer('standard/connexion'); ?>
-        <?php Vue::montrer('standard/pied'); ?>
-        <?php echo $A_vue['body']
-                <?php Vue::montrer('standard/navBarr');?>*/
-        ?>
     </body>
 </html>
