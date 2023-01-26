@@ -76,12 +76,12 @@ function goToInscription(){
  */
 function changeUtilisateur(){
     const bouton = document.getElementById('boutonChangeUtilisateur');
-    if (bouton.value == "Utilisateur") {
-        bouton.value = "admin";
+    if (bouton.value == "Go Utilisateur") {
+        bouton.value = "Go admin";
         bouton.name = 'Utilisateur';
     }
     else {
-        bouton.value = "Utilisateur";
+        bouton.value = "Go Utilisateur";
         bouton.name = "admin";
     }
     return;
