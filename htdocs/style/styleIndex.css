@@ -870,7 +870,7 @@ footer{
 
     #barreAutre{
         flex-direction: column;
-        margin-left: 10px;
+        align-items: center;
     }
 
     #search_input{
