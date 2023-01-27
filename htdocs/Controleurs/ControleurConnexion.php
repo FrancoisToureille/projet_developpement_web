@@ -4,7 +4,7 @@ final class ControleurConnexion
 {
     public function defautAction() {
         $connexion = new ConnexionUtilisateurBDD();
-        Vue::montrer('standard/connexion', array('information' =>  "deefault"));
+        Vue::montrer('standard/connexion', array('information' =>  ""));
     }
 
     /**
