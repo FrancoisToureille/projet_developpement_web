@@ -43,7 +43,7 @@ class ConnexionUtilisateurBDD {
     public static function mettreAJourDerniereConnexion($S_idPersonneConnectee, $S_statusName, $S_nomId) {
         $O_pdo = ConnexionBDD::getInstance();
         try {
-            $O_requete = $O_pdo->query("UPDATE $S_statusName SET derniereConnexion=CURRENT_DATE WHERE $S_nomId='" . $S_idPersonneConnectee . "'");
+            $O_requete = $O_pdo->query("UPDATE $S_statusName SET derniereConnexion=CURRENT_DATE() WHERE $S_nomId='" . $S_idPersonneConnectee . "'");
             return;
         }
         catch (PDOException $e) {
